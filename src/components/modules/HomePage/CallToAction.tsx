@@ -7,7 +7,7 @@ const CallToAction = () => {
     return (
         <footer className="bg-primary/90 py-12">
             <div className="container mx-auto max-w-4xl px-4 flex flex-col items-center text-center gap-6">
-                <h2 className="text-2xl lg:text-3xl font-bold">Ready to experience DigiWallet? <br className="hidden sm:block" />Sign up today!</h2>
+                <h2 className="text-2xl lg:text-3xl font-bold">Ready to experience WalletX? <br className="hidden sm:block" />Sign up today!</h2>
                 <Link to="/register">
                     <Button size="lg" className="bg-white text-primary font-semibold px-8 py-5 shadow-lg hover:bg-primary-foreground hover:text-primary transition">
                         Sign Up
