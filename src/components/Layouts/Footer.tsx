@@ -72,7 +72,7 @@ const Footer = ({
   copyright = "© 2025 WalletX All rights reserved."
 }: Footer7Props) => {
   return (
-    <section className="container mx-auto px-4 md:px-6">
+    <section className="container mx-auto px-4 md:px-6 mt-8">
       <div className="">
         <div className="flex w-full flex-col justify-between gap-10 lg:flex-row lg:items-start lg:text-left">
           <div className="flex w-full flex-col justify-between gap-6 lg:items-start">
