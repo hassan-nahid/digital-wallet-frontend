@@ -69,9 +69,7 @@ export default function Navbar() {
                 <NavigationMenuList className="flex-col items-start gap-0 md:gap-2">
                   {navigationLinks.map((link, index) => (
                     <NavigationMenuItem key={index} className="w-full">
-                      <NavigationMenuLink
-                        className="py-1.5"
-                      >
+                      <NavigationMenuLink asChild className="py-1.5">
                         <Link to={link.href}>{link.label}</Link>
                       </NavigationMenuLink>
                     </NavigationMenuItem>
@@ -90,9 +88,7 @@ export default function Navbar() {
               <NavigationMenuList className="gap-2">
                 {navigationLinks.map((link, index) => (
                   <NavigationMenuItem key={index}>
-                    <NavigationMenuLink
-                      className="text-muted-foreground hover:text-primary py-1.5 font-medium"
-                    >
+                    <NavigationMenuLink asChild className="text-muted-foreground hover:text-primary py-1.5 font-medium">
                       <Link to={link.href}>{link.label}</Link>
                     </NavigationMenuLink>
                   </NavigationMenuItem>
