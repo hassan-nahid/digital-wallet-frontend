@@ -13,6 +13,8 @@ import {
 } from "@/components/ui/popover"
 import { Link } from "react-router"
 import { ModeToggle } from "./ModeToggle"
+import { authAPi, useLogoutMutation, useUserInfoQuery } from "@/redux/features/auth/auth.api"
+import { useAppDispatch } from "@/redux/hook"
 
 // Navigation links array to be used in both desktop and mobile menus
 const navigationLinks = [
@@ -24,6 +26,18 @@ const navigationLinks = [
 ]
 
 export default function Navbar() {
+
+  const { data } = useUserInfoQuery(undefined)
+  const [logout] = useLogoutMutation()
+const dispatch = useAppDispatch()
+
+
+  const handleLogout = () => {
+    logout(undefined)
+    dispatch(authAPi.util.resetApiState())
+  }
+
+
   return (
     <header className="sticky top-0 z-50 bg-background border-b px-4 md:px-6 container mx-auto">
       <div className="flex h-16 items-center justify-between gap-4">
@@ -100,9 +114,38 @@ export default function Navbar() {
         {/* Right side */}
         <div className="flex items-center gap-2">
           <ModeToggle/>
-          <Button asChild  className="text-sm">
-            <Link to="/login">Login</Link>
-          </Button>
+          {data?.data?.email ? (
+            <Popover>
+              <PopoverTrigger asChild>
+                <Button variant="ghost" size="icon" className="rounded-full">
+                  {/* Highlighted profile icon */}
+                  <span className="flex items-center justify-center w-9 h-9 rounded-full bg-primary/90 border-2 border-primary shadow-md hover:bg-primary/80 transition-colors">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                      <circle cx="12" cy="8" r="4"/>
+                      <path d="M6 20c0-2.2 3.6-3.4 6-3.4s6 1.2 6 3.4"/>
+                    </svg>
+                  </span>
+                </Button>
+              </PopoverTrigger>
+              <PopoverContent align="end" className="w-56 p-4">
+                <div className="flex flex-col items-center gap-2">
+                  <div className="w-12 h-12 rounded-full bg-muted flex items-center justify-center text-2xl">
+                    {/* Initials or icon */}
+                    {data.data.name ? data.data.name.charAt(0).toUpperCase() : <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="8" r="4"/><path d="M6 20c0-2.2 3.6-3.4 6-3.4s6 1.2 6 3.4"/></svg>}
+                  </div>
+                  <div className="text-center">
+                    <div className="font-semibold">{data.data.name || "User"}</div>
+                    <div className="text-xs text-muted-foreground">{data.data.email}</div>
+                  </div>
+                  <Button onClick={handleLogout} variant="outline" className="w-full mt-2">Logout</Button>
+                </div>
+              </PopoverContent>
+            </Popover>
+          ) : (
+            <Button asChild className="text-sm">
+              <Link to="/login">Login</Link>
+            </Button>
+          )}
         </div>
       </div>
     </header>
