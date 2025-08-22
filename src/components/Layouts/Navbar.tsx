@@ -15,22 +15,26 @@ import { Link } from "react-router"
 import { ModeToggle } from "./ModeToggle"
 import { authAPi, useLogoutMutation, useUserInfoQuery } from "@/redux/features/auth/auth.api"
 import { useAppDispatch } from "@/redux/hook"
+import { role } from "@/constants/role"
+import React from "react"
 
 // Navigation links array to be used in both desktop and mobile menus
 const navigationLinks = [
-  { href: "/", label: "Home" },
-  { href: "/about", label: "About" },
-  { href: "/features", label: "Features" }, 
-  { href: "/contact", label: "Contact" }, 
-  { href: "/faq", label: "FAQ" }, 
+  { href: "/", label: "Home", role: "PUBLIC" },
+  { href: "/about", label: "About", role: "PUBLIC" },
+  { href: "/features", label: "Features", role: "PUBLIC" },
+  { href: "/contact", label: "Contact", role: "PUBLIC" },
+  { href: "/faq", label: "FAQ", role: "PUBLIC" },
+  { href: "/admin", label: "Dashboard", role: role.admin },
+  { href: "/agent", label: "Dashboard", role: role.agent },
+  { href: "/user", label: "Dashboard", role: role.user },
 ]
 
 export default function Navbar() {
 
   const { data } = useUserInfoQuery(undefined)
   const [logout] = useLogoutMutation()
-const dispatch = useAppDispatch()
-
+  const dispatch = useAppDispatch()
 
   const handleLogout = () => {
     logout(undefined)
@@ -82,11 +86,28 @@ const dispatch = useAppDispatch()
               <NavigationMenu className="max-w-none *:w-full">
                 <NavigationMenuList className="flex-col items-start gap-0 md:gap-2">
                   {navigationLinks.map((link, index) => (
-                    <NavigationMenuItem key={index} className="w-full">
-                      <NavigationMenuLink asChild className="py-1.5">
-                        <Link to={link.href}>{link.label}</Link>
-                      </NavigationMenuLink>
-                    </NavigationMenuItem>
+                    <React.Fragment key={index}>
+                      {link.role === "PUBLIC" && (
+                        <NavigationMenuItem>
+                          <NavigationMenuLink
+                            asChild
+                            className="text-muted-foreground hover:text-primary py-1.5 font-medium"
+                          >
+                            <Link to={link.href}>{link.label}</Link>
+                          </NavigationMenuLink>
+                        </NavigationMenuItem>
+                      )}
+                      {link.role === data?.data?.role && (
+                        <NavigationMenuItem>
+                          <NavigationMenuLink
+                            asChild
+                            className="text-muted-foreground hover:text-primary py-1.5 font-medium"
+                          >
+                            <Link to={link.href}>{link.label}</Link>
+                          </NavigationMenuLink>
+                        </NavigationMenuItem>
+                      )}
+                    </React.Fragment>
                   ))}
                 </NavigationMenuList>
               </NavigationMenu>
@@ -95,17 +116,34 @@ const dispatch = useAppDispatch()
           {/* Main nav */}
           <div className="flex items-center gap-6">
             <Link to="/" className="text-primary hover:text-primary/90">
-              <Logo /> 
+              <Logo />
             </Link>
             {/* Navigation menu */}
             <NavigationMenu className="max-md:hidden">
               <NavigationMenuList className="gap-2">
                 {navigationLinks.map((link, index) => (
-                  <NavigationMenuItem key={index}>
-                    <NavigationMenuLink asChild className="text-muted-foreground hover:text-primary py-1.5 font-medium">
-                      <Link to={link.href}>{link.label}</Link>
-                    </NavigationMenuLink>
-                  </NavigationMenuItem>
+                  <React.Fragment key={index}>
+                    {link.role === "PUBLIC" && (
+                      <NavigationMenuItem>
+                        <NavigationMenuLink
+                          asChild
+                          className="text-muted-foreground hover:text-primary py-1.5 font-medium"
+                        >
+                          <Link to={link.href}>{link.label}</Link>
+                        </NavigationMenuLink>
+                      </NavigationMenuItem>
+                    )}
+                    {link.role === data?.data?.role && (
+                      <NavigationMenuItem>
+                        <NavigationMenuLink
+                          asChild
+                          className="text-muted-foreground hover:text-primary py-1.5 border border-primary font-medium"
+                        >
+                          <Link to={link.href}>{link.label}</Link>
+                        </NavigationMenuLink>
+                      </NavigationMenuItem>
+                    )}
+                  </React.Fragment>
                 ))}
               </NavigationMenuList>
             </NavigationMenu>
@@ -113,7 +151,7 @@ const dispatch = useAppDispatch()
         </div>
         {/* Right side */}
         <div className="flex items-center gap-2">
-          <ModeToggle/>
+          <ModeToggle />
           {data?.data?.email ? (
             <Popover>
               <PopoverTrigger asChild>
@@ -121,8 +159,8 @@ const dispatch = useAppDispatch()
                   {/* Highlighted profile icon */}
                   <span className="flex items-center justify-center w-9 h-9 rounded-full bg-primary/90 border-2 border-primary shadow-md hover:bg-primary/80 transition-colors">
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                      <circle cx="12" cy="8" r="4"/>
-                      <path d="M6 20c0-2.2 3.6-3.4 6-3.4s6 1.2 6 3.4"/>
+                      <circle cx="12" cy="8" r="4" />
+                      <path d="M6 20c0-2.2 3.6-3.4 6-3.4s6 1.2 6 3.4" />
                     </svg>
                   </span>
                 </Button>
@@ -131,7 +169,7 @@ const dispatch = useAppDispatch()
                 <div className="flex flex-col items-center gap-2">
                   <div className="w-12 h-12 rounded-full bg-muted flex items-center justify-center text-2xl">
                     {/* Initials or icon */}
-                    {data.data.name ? data.data.name.charAt(0).toUpperCase() : <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="8" r="4"/><path d="M6 20c0-2.2 3.6-3.4 6-3.4s6 1.2 6 3.4"/></svg>}
+                    {data.data.name ? data.data.name.charAt(0).toUpperCase() : <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="8" r="4" /><path d="M6 20c0-2.2 3.6-3.4 6-3.4s6 1.2 6 3.4" /></svg>}
                   </div>
                   <div className="text-center">
                     <div className="font-semibold">{data.data.name || "User"}</div>

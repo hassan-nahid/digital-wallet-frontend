@@ -1,7 +1,4 @@
 import { baseApi } from "@/redux/baseApi";
-// import type { IResponse, ISendOtp } from "@/types";
-// import type { IVerifyOtp } from "@/types/auth.type";
-
 
 
 export const authAPi = baseApi.injectEndpoints({
