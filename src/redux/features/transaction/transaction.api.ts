@@ -19,14 +19,21 @@ export const transactionApi = baseApi.injectEndpoints({
             }),
             invalidatesTags: ["TRANSACTION"],
         }),
-        walletInfo: builder.query({
+        myTransactions: builder.query({
             query: () => ({
-                url: "/wallet/me",
+                url: "/transaction/my-transactions",
                 method: "GET",
             }),
-            providesTags: ["WALLET"],
+            providesTags: ["TRANSACTION"],
+        }),
+        myTransactionsById: builder.query({
+            query: (tranId) => ({
+                url: `/transaction/my-transactions/${tranId}`,
+                method: "GET",
+            }),
+            providesTags: ["TRANSACTION"],
         })
     })
 })
 
-export const { useWalletInfoQuery, useCashOutMutation, useCashInMutation } = transactionApi
+export const { useMyTransactionsByIdQuery, useMyTransactionsQuery, useCashOutMutation, useCashInMutation } = transactionApi
