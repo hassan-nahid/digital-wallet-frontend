@@ -32,12 +32,12 @@ const Banner = () => {
                         </div>
                         <div className="mt-6 flex flex-col sm:flex-row justify-center gap-3">
                             <Link to="/register">
-                                <Button size="lg" className="shadow-lg text-lg px-8 py-5 font-semibold animate-pulse">
+                                <Button size="lg" className="shadow-lg cursor-pointer text-lg px-8 py-5 font-semibold animate-pulse">
                                     Get Started
                                 </Button>
                             </Link>
                             <Link to="/about">
-                                <Button variant="outline" className="group text-lg px-8 py-5">
+                                <Button variant="outline" className="group cursor-pointer text-lg px-8 py-5">
                                     Learn more{" "}
                                     <ExternalLink className="ml-2 h-4 transition-transform group-hover:translate-x-0.5" />
                                 </Button>

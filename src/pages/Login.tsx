@@ -1,10 +1,19 @@
 import { LoginForm } from "@/components/modules/LoginPage/LoginForm"
 import loginImage from "../assets/image/login.jpg"
 import Logo from "@/assets/Logo/Logo"
-import { Link } from "react-router"
+import { Link, useNavigate } from "react-router"
+import { useUserInfoQuery } from "@/redux/features/auth/auth.api"
 
 
 export default function Login() {
+
+  const {data} = useUserInfoQuery(undefined)
+  const nagivate = useNavigate()
+
+  if(data?.data?.email){
+    nagivate("/")
+  }
+
   return (
     <div className="grid min-h-svh lg:grid-cols-2">
       <div className="flex flex-col gap-4 p-6 md:p-10">

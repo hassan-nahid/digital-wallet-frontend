@@ -155,7 +155,7 @@ export default function Navbar() {
           {data?.data?.email ? (
             <Popover>
               <PopoverTrigger asChild>
-                <Button variant="ghost" size="icon" className="rounded-full">
+                <Button variant="ghost" size="icon" className="rounded-full cursor-pointer">
                   {/* Highlighted profile icon */}
                   <span className="flex items-center justify-center w-9 h-9 rounded-full bg-primary/90 border-2 border-primary shadow-md hover:bg-primary/80 transition-colors">
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -175,12 +175,12 @@ export default function Navbar() {
                     <div className="font-semibold">{data.data.name || "User"}</div>
                     <div className="text-xs text-muted-foreground">{data.data.email}</div>
                   </div>
-                  <Button onClick={handleLogout} variant="outline" className="w-full mt-2">Logout</Button>
+                  <Button onClick={handleLogout} variant="outline" className="w-full cursor-pointer mt-2">Logout</Button>
                 </div>
               </PopoverContent>
             </Popover>
           ) : (
-            <Button asChild className="text-sm">
+            <Button asChild className="text-sm cursor-pointer">
               <Link to="/login">Login</Link>
             </Button>
           )}

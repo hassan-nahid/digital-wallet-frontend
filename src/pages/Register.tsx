@@ -1,10 +1,17 @@
 import RegisterImage from "../assets/image/register.png"
 import Logo from "@/assets/Logo/Logo"
 import { RegisterForm } from "@/components/modules/RegisterPage/RagisterForm"
-import { Link } from "react-router"
+import { useUserInfoQuery } from "@/redux/features/auth/auth.api"
+import { Link, useNavigate } from "react-router"
 
 
 export default function Register() {
+    const {data} = useUserInfoQuery(undefined)
+      const nagivate = useNavigate()
+    
+      if(data?.data?.email){
+        nagivate("/")
+      }
     return (
         <div className="grid min-h-svh lg:grid-cols-2">
             <div className="bg-muted relative hidden lg:block">

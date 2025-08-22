@@ -55,7 +55,7 @@ const Features = () => {
                 <div className="container mx-auto max-w-3xl px-4 text-center">
                     <h2 className="text-2xl font-bold mb-4">Ready to get started?</h2>
                     <p className="text-muted-foreground mb-6">Join thousands of users who trust WalletX for their digital transactions.</p>
-                    <Link to="/register"><Button size="lg" className="px-8 py-5 font-semibold shadow-lg">Create Your Free Account</Button></Link>
+                    <Link to="/register"><Button size="lg" className="px-8 cursor-pointer py-5 font-semibold shadow-lg">Create Your Free Account</Button></Link>
                 </div>
             </section>
         </main>

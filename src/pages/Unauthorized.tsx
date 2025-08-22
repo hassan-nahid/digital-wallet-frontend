@@ -14,7 +14,7 @@ const Unauthorized = () => {
         <h1 className="text-3xl font-bold text-red-600">Unauthorized</h1>
         <p className="text-muted-foreground text-lg max-w-md">You do not have permission to access this page.</p>
       </div>
-      <Button asChild className="mt-4">
+      <Button asChild className="mt-4 cursor-pointer">
         <Link to="/">Go to Home</Link>
       </Button>
     </div>

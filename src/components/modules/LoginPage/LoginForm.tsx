@@ -108,7 +108,7 @@ export function LoginForm({ className }: { className?: string }) {
                                 </FormItem>
                             )}
                         />
-                        <Button type="submit" className="w-full">Login</Button>
+                        <Button type="submit" className="w-full cursor-pointer">Login</Button>
                     </form>
                 </Form>
             </div>

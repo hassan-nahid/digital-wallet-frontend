@@ -29,7 +29,7 @@ export default function ContactForm() {
         <label htmlFor="message" className="block font-medium mb-1">Message</label>
         <textarea id="message" name="message" required rows={4} className="w-full px-4 py-2 rounded border focus:outline-none focus:ring-2 focus:ring-primary bg-background" placeholder="How can we help you?" />
       </div>
-      <Button type="submit" size="lg" className="font-semibold shadow">Send Message</Button>
+      <Button type="submit" size="lg" className="font-semibold cursor-pointer shadow">Send Message</Button>
     </form>
   )
 }

@@ -242,7 +242,7 @@ export function RegisterForm({ className }: { className?: string }) {
                                 </FormItem>
                             )}
                         />
-                        <Button type="submit" className="w-full">Register</Button>
+                        <Button type="submit" className="w-full cursor-pointer">Register</Button>
                     </form>
                 </Form>
             </div>

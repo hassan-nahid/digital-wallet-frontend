@@ -14,7 +14,7 @@ const ErrorPage = () => {
         <h1 className="text-3xl font-bold text-yellow-600">Something went wrong</h1>
         <p className="text-muted-foreground text-lg max-w-md">An unexpected error has occurred. Please try again later or contact support.</p>
       </div>
-      <Button asChild className="mt-4">
+      <Button asChild className="mt-4 cursor-pointer">
         <Link to="/">Go to Home</Link>
       </Button>
     </div>
