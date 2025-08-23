@@ -20,9 +20,10 @@ export const transactionApi = baseApi.injectEndpoints({
             invalidatesTags: ["TRANSACTION"],
         }),
         myTransactions: builder.query({
-            query: () => ({
+            query: (params) => ({
                 url: "/transaction/my-transactions",
                 method: "GET",
+                params,
             }),
             providesTags: ["TRANSACTION"],
         }),
