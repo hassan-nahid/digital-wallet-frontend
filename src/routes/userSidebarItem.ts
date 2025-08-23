@@ -7,6 +7,7 @@ const CashOut = lazy(() => import("@/pages/User/CashOut"))
 const Transactions = lazy(() => import("@/pages/User/Transactions"))
 const Profile = lazy(() => import("@/pages/User/Profile"))
 const Settings = lazy(() => import("@/pages/User/Settings"))
+const ChangePassword = lazy(() => import("@/pages/User/ChangePassword"))
 
 export const userSidebarItem : ISidebarItem[] = [
     {
@@ -41,6 +42,11 @@ export const userSidebarItem : ISidebarItem[] = [
           title: "Profile",
           url: "/user/profile",
           component: Profile
+        },
+        {
+          title: "Change Password",
+          url: "/user/change-password",
+          component: ChangePassword
         },
         {
           title: "Settings",

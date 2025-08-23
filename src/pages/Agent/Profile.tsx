@@ -84,7 +84,6 @@ const Profile = () => {
                 {user?.name?.charAt(0).toUpperCase()}
               </div>
             )}
-            <span className={`absolute bottom-2 right-2 px-3 py-1 rounded-full text-xs font-semibold shadow-lg ${user?.isActive === 'ACTIVE' ? 'bg-green-500 text-white' : 'bg-red-500 text-white'}`}>{user?.isActive}</span>
           </div>
           {/* Info section */}
           <div className="flex-1 grid grid-cols-1 sm:grid-cols-2 gap-4">
