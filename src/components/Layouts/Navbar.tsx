@@ -151,7 +151,7 @@ export default function Navbar() {
         </div>
         {/* Right side */}
         <div className="flex items-center gap-2">
-          <ModeToggle />
+          <div className="theme-toggle"><ModeToggle/></div>
           {data?.data?.email ? (
             <Popover>
               <PopoverTrigger asChild>

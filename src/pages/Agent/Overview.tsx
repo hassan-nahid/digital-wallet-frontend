@@ -95,8 +95,8 @@ const Overview = () => {
           )}
         </div>
         <div className="flex gap-2 sm:gap-4 justify-between mt-2">
-          <Button className="flex-1 text-xs sm:text-base py-2 cursor-pointer sm:py-3" variant="outline" onClick={() => navigate('/agent/cashin')} disabled={isLoading}>Cash In</Button>
-          <Button className="flex-1 text-xs sm:text-base py-2 cursor-pointer sm:py-3" variant="outline" onClick={() => navigate('/agent/cashout')} disabled={isLoading}>Cash Out</Button>
+          <Button className="flex-1 text-xs sm:text-base py-2 cursor-pointer sm:py-3" variant="outline" onClick={() => navigate('/agent/cash-in')} disabled={isLoading}>Cash In</Button>
+          <Button className="flex-1 text-xs sm:text-base py-2 cursor-pointer sm:py-3" variant="outline" onClick={() => navigate('/agent/cash-out')} disabled={isLoading}>Cash Out</Button>
           <Button className="flex-1 text-xs sm:text-base py-2 cursor-pointer sm:py-3" variant="outline" onClick={() => navigate('/agent/transactions')} disabled={isLoading}>Transactions</Button>
         </div>
       </div>
