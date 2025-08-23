@@ -24,8 +24,18 @@ export const userApi = baseApi.injectEndpoints({
                 method: "GET",
             }),
             providesTags: ["USER"],
-        })
+        }),
+        updateProfile: builder.mutation({
+            // Accepts a flat object: { _id, name, phone, address }
+            query: ({ userId, ...payload }) => ({
+                url: `user/${userId}`,
+                method: "PATCH",
+                data: payload,
+            }),
+            invalidatesTags: ["USER"],
+        }),
+       
     })
 })
 
-export const { useGetUserByEmailQuery, useCashInMutation, useGetAdminQuery } = userApi
+export const { useUpdateProfileMutation,useGetUserByEmailQuery, useCashInMutation, useGetAdminQuery } = userApi
