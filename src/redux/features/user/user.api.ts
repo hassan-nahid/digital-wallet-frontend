@@ -18,6 +18,13 @@ export const userApi = baseApi.injectEndpoints({
             }),
             providesTags: ["USER"],
         }),
+        getAgentByEmail: builder.query({
+            query: (email) => ({
+                url: `user/search-agent/${email}`,
+                method: "GET",
+            }),
+            providesTags: ["USER"],
+        }),
         getAdmin: builder.query({
             query: () => ({
                 url: `user/get-admin`,
@@ -26,7 +33,6 @@ export const userApi = baseApi.injectEndpoints({
             providesTags: ["USER"],
         }),
         updateProfile: builder.mutation({
-            // Accepts a flat object: { _id, name, phone, address }
             query: ({ userId, ...payload }) => ({
                 url: `user/${userId}`,
                 method: "PATCH",
@@ -38,4 +44,4 @@ export const userApi = baseApi.injectEndpoints({
     })
 })
 
-export const { useUpdateProfileMutation,useGetUserByEmailQuery, useCashInMutation, useGetAdminQuery } = userApi
+export const { useGetAgentByEmailQuery,useUpdateProfileMutation,useGetUserByEmailQuery, useCashInMutation, useGetAdminQuery } = userApi
