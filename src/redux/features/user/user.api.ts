@@ -39,7 +39,30 @@ export const userApi = baseApi.injectEndpoints({
             }),
             providesTags: ["USER"],
         }),
+        getUserById: builder.query({
+            query: (userId) => ({
+                url: `/user/${userId}`,
+                method: "GET",
+            }),
+            providesTags: ["USER"],
+        }),
+        getAllUser: builder.query({
+            query: (params) => ({
+                url: `/user/all-users`,
+                method: "GET",
+                params,
+            }),
+            providesTags: ["USER"],
+        }),
         updateProfile: builder.mutation({
+            query: ({ userId, ...payload }) => ({
+                url: `/user/${userId}`,
+                method: "PATCH",
+                data: payload,
+            }),
+            invalidatesTags: ["USER"],
+        }),
+        makeAgent: builder.mutation({
             query: ({ userId, ...payload }) => ({
                 url: `/user/${userId}`,
                 method: "PATCH",
@@ -51,4 +74,4 @@ export const userApi = baseApi.injectEndpoints({
     })
 })
 
-export const { useUserAnalyticsQuery,useGetAgentByEmailQuery,useUpdateProfileMutation,useGetUserByEmailQuery, useCashInMutation, useGetAdminQuery } = userApi
+export const { useGetUserByIdQuery,useGetAllUserQuery,useUserAnalyticsQuery,useGetAgentByEmailQuery,useUpdateProfileMutation,useGetUserByEmailQuery, useCashInMutation, useGetAdminQuery } = userApi

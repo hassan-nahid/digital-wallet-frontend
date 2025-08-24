@@ -46,14 +46,18 @@ const Overview = () => {
                 <div className="text-sm sm:text-base text-muted-foreground">{user?.email}</div>
                 <div className="text-xs sm:text-sm text-muted-foreground">{user?.phone}</div>
                 <div className="text-xs sm:text-sm text-muted-foreground">Role: <span className="font-semibold text-primary">{user?.role}</span></div>
+                <div className="flex items-center gap-2">
+                  <span className="text-xs text-muted-foreground">Approved:</span>
+                  <span className={`font-semibold ${user?.isAgentApproved ? 'text-green-600' : 'text-red-500'}`}>{user?.isAgentApproved ? 'Yes' : 'No'}</span>
+                </div>
                 <div className="text-xs sm:text-sm text-muted-foreground">NID: <span className="font-semibold">{user?.nid}</span></div>
-                <div className="text-xs sm:text-sm text-muted-foreground flex items-center gap-1 sm:gap-2">UID: 
+                <div className="text-xs sm:text-sm text-muted-foreground flex items-center gap-1 sm:gap-2">UID:
                   <span className="font-mono font-semibold select-all">{user?._id}</span>
                   <Button type="button" size="icon" variant="ghost" className="p-1 cursor-pointer" onClick={handleCopy} title="Copy UID">
                     {copied ? (
                       <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2"><path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" /></svg>
                     ) : (
-                      <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2"><rect x="9" y="9" width="13" height="13" rx="2"/><rect x="3" y="3" width="13" height="13" rx="2"/></svg>
+                      <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2"><rect x="9" y="9" width="13" height="13" rx="2" /><rect x="3" y="3" width="13" height="13" rx="2" /></svg>
                     )}
                   </Button>
                 </div>
