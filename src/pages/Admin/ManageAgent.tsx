@@ -5,7 +5,8 @@ import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Pagination, PaginationContent, PaginationItem, PaginationLink, PaginationNext, PaginationPrevious } from "@/components/ui/pagination";
-import { useGetAllUserQuery, useGetUserByIdQuery, useUpdateProfileMutation } from "@/redux/features/user/user.api";
+import { useGetAllUserQuery, useGetUserByIdQuery, useUpdateProfileMutation, useGetUserByEmailQuery, useMakeAgentMutation } from "@/redux/features/user/user.api";
+
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { User2 } from "lucide-react";
 
@@ -20,7 +21,14 @@ const activeColor: Record<string, string> = {
   INACTIVE: "bg-red-100 text-red-700",
 };
 
+
 const ManageAgent = () => {
+  // State for Make Agent modal
+  const [makeAgentModal, setMakeAgentModal] = useState(false);
+  const [email, setEmail] = useState("");
+  const [searched, setSearched] = useState(false);
+  const { data: searchedUser, isLoading: searching } = useGetUserByEmailQuery(email, { skip: !searched || !email });
+  const [makeAgent, { isLoading: makingAgent }] = useMakeAgentMutation();
 
   const [currentPage, setCurrentPage] = useState(1);
   const [search, setSearch] = useState("");
@@ -55,13 +63,13 @@ const ManageAgent = () => {
     }
   };
 
-  // Block/Unblock handler
-  const handleBlockToggle = async (user: any) => {
+
+  // Approve/Suspend handler
+  const handleApproveToggle = async (user: any) => {
     try {
-      await updateProfile({ userId: user._id, isActive: user.isActive === "ACTIVE" ? "BLOCKED" : "ACTIVE" });
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      await updateProfile({ userId: user._id, isAgentApproved: !user.isAgentApproved });
     } catch (err) {
-      // Optionally show error toast
+      console.log(err)
     }
   };
 
@@ -164,7 +172,73 @@ const ManageAgent = () => {
           >
             Reset
           </Button>
+          <Button
+            type="button"
+            className="h-10 px-6 text-xs font-semibold ml-2 bg-primary text-white"
+            onClick={() => {
+              setMakeAgentModal(true);
+              setEmail("");
+              setSearched(false);
+            }}
+          >
+            User Make Agent
+          </Button>
         </form>
+
+        {/* Make Agent Modal */}
+        <Dialog open={makeAgentModal} onOpenChange={setMakeAgentModal}>
+          <DialogContent className="max-w-md">
+            <DialogHeader>
+              <DialogTitle>User Make Agent</DialogTitle>
+              <DialogDescription>Search user by email and make them an agent.</DialogDescription>
+            </DialogHeader>
+            <form
+              onSubmit={e => {
+                e.preventDefault();
+                setSearched(true);
+              }}
+              className="flex gap-2 mb-4"
+            >
+              <input
+                type="email"
+                className="border border-primary/20 rounded-md px-3 py-2 text-sm flex-1"
+                placeholder="Enter user email"
+                value={email}
+                onChange={e => {
+                  setEmail(e.target.value);
+                  setSearched(false);
+                }}
+                required
+              />
+              <Button type="submit" disabled={!setEmail || searching}>
+                Search
+              </Button>
+            </form>
+            {searching && <div className="text-xs text-muted-foreground mb-2">Searching...</div>}
+            {searched && searchedUser?.data ? (
+              <div className="border rounded p-3 mb-2 flex flex-col gap-1">
+                <div className="font-semibold">{searchedUser.data.name}</div>
+                <div className="text-xs text-muted-foreground">{searchedUser.data.email}</div>
+                <div className="text-xs">Phone: {searchedUser.data.phone}</div>
+                <div className="text-xs">Role: {searchedUser.data.role}</div>
+                <Button
+                  className="mt-2"
+                  disabled={makingAgent}
+                  onClick={async () => {
+                    await makeAgent({ userId: searchedUser.data._id });
+                    setMakeAgentModal(false);
+                    setEmail("");
+                    setSearched(false);
+                  }}
+                >
+                  Make Agent
+                </Button>
+              </div>
+            ) : searched && !searchedUser?.data && !searching ? (
+              <div className="text-xs text-red-500 mb-2">No user found with this email.</div>
+            ) : null}
+          </DialogContent>
+  </Dialog>
         <div className="overflow-x-auto">
           <table className="min-w-full divide-y divide-primary/10">
             <thead>
@@ -222,13 +296,13 @@ const ManageAgent = () => {
                     <td className="px-3 py-2 text-xs">{new Date(user.createdAt).toLocaleDateString()}</td>
                     <td className="px-3 py-2 text-xs flex gap-2">
                       <Button size="sm" variant="outline" onClick={() => { setUserId(user._id); setOpen(true); }}>Details</Button>
-                      {user.isActive === "ACTIVE" ? (
-                        <Button size="sm" variant="destructive" disabled={updating} onClick={() => handleBlockToggle(user)}>
-                          Block
+                      {user.isAgentApproved ? (
+                        <Button size="sm" variant="destructive" disabled={updating} onClick={() => handleApproveToggle(user)}>
+                          Suspend
                         </Button>
                       ) : (
-                        <Button size="sm" variant="secondary" disabled={updating} onClick={() => handleBlockToggle(user)}>
-                          Unblock
+                        <Button size="sm" variant="secondary" disabled={updating} onClick={() => handleApproveToggle(user)}>
+                          Approve
                         </Button>
                       )}
                     </td>

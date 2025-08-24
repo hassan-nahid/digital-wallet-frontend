@@ -63,10 +63,16 @@ export const userApi = baseApi.injectEndpoints({
             invalidatesTags: ["USER"],
         }),
         makeAgent: builder.mutation({
-            query: ({ userId, ...payload }) => ({
-                url: `/user/${userId}`,
+            query: ({ userId }) => ({
+                url: `/user/make-agent/${userId}`,
                 method: "PATCH",
-                data: payload,
+            }),
+            invalidatesTags: ["USER"],
+        }),
+        agentSuspense: builder.mutation({
+            query: ({ userId }) => ({
+                url: `/user/agent-suspense/${userId}`,
+                method: "PATCH",
             }),
             invalidatesTags: ["USER"],
         }),
@@ -74,4 +80,4 @@ export const userApi = baseApi.injectEndpoints({
     })
 })
 
-export const { useGetUserByIdQuery,useGetAllUserQuery,useUserAnalyticsQuery,useGetAgentByEmailQuery,useUpdateProfileMutation,useGetUserByEmailQuery, useCashInMutation, useGetAdminQuery } = userApi
+export const { useAgentSuspenseMutation,useMakeAgentMutation,useGetUserByIdQuery,useGetAllUserQuery,useUserAnalyticsQuery,useGetAgentByEmailQuery,useUpdateProfileMutation,useGetUserByEmailQuery, useCashInMutation, useGetAdminQuery } = userApi
