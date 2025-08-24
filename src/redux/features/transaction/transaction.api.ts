@@ -5,7 +5,7 @@ export const transactionApi = baseApi.injectEndpoints({
     endpoints: (builder) => ({
         cashIn: builder.mutation({
             query: (transactionInfo) => ({
-                url: "transaction/cash-in",
+                url: "/transaction/cash-in",
                 method: "POST",
                 data: transactionInfo
             }),
@@ -13,7 +13,7 @@ export const transactionApi = baseApi.injectEndpoints({
         }),
         sendMoney: builder.mutation({
             query: (transactionInfo) => ({
-                url: "transaction/send-money",
+                url: "/transaction/send-money",
                 method: "POST",
                 data: transactionInfo
             }),
@@ -21,7 +21,7 @@ export const transactionApi = baseApi.injectEndpoints({
         }),
         cashOut: builder.mutation({
             query: (transactionInfo) => ({
-                url: "transaction/cash-out",
+                url: "/transaction/cash-out",
                 method: "POST",
                 data: transactionInfo
             }),
@@ -29,7 +29,7 @@ export const transactionApi = baseApi.injectEndpoints({
         }),
         adminWithdraw: builder.mutation({
             query: (transactionInfo) => ({
-                url: "transaction/admin-withdraw",
+                url: "/transaction/admin-withdraw",
                 method: "POST",
                 data: transactionInfo
             }),
@@ -49,8 +49,15 @@ export const transactionApi = baseApi.injectEndpoints({
                 method: "GET",
             }),
             providesTags: ["TRANSACTION"],
+        }),
+        transactionsAnalytics: builder.query({
+            query: () => ({
+                url: `/transaction/analytics`,
+                method: "GET",
+            }),
+            providesTags: ["TRANSACTION"],
         })
     })
 })
 
-export const {useAdminWithdrawMutation ,useSendMoneyMutation,useMyTransactionsByIdQuery, useMyTransactionsQuery, useCashOutMutation, useCashInMutation } = transactionApi
+export const {useTransactionsAnalyticsQuery,useAdminWithdrawMutation ,useSendMoneyMutation,useMyTransactionsByIdQuery, useMyTransactionsQuery, useCashOutMutation, useCashInMutation } = transactionApi

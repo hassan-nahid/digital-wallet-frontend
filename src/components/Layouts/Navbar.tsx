@@ -32,15 +32,18 @@ const navigationLinks = [
 
 export default function Navbar() {
 
-  const { data } = useUserInfoQuery(undefined)
-  const [logout] = useLogoutMutation()
-  const dispatch = useAppDispatch()
+ const { data } = useUserInfoQuery(undefined)
+const [logout] = useLogoutMutation()
+const dispatch = useAppDispatch()
 
-  const handleLogout = () => {
-    logout(undefined)
+const handleLogout = async () => {
+  try {
+    await logout(undefined).unwrap()  
     dispatch(authAPi.util.resetApiState())
+  } catch (error) {
+    console.error("Logout failed:", error)
   }
-
+}
 
   return (
     <header className="sticky top-0 z-50 bg-background border-b px-4 md:px-6 container mx-auto">

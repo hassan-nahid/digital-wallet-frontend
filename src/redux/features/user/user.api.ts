@@ -5,7 +5,7 @@ export const userApi = baseApi.injectEndpoints({
     endpoints: (builder) => ({
         cashIn: builder.mutation({
             query: (transactionInfo) => ({
-                url: "transaction/cash-in",
+                url: "/transaction/cash-in",
                 method: "POST",
                 data: transactionInfo
             }),
@@ -13,28 +13,35 @@ export const userApi = baseApi.injectEndpoints({
         }),
         getUserByEmail: builder.query({
             query: (email) => ({
-                url: `user/search-user/${email}`,
+                url: `/user/search-user/${email}`,
                 method: "GET",
             }),
             providesTags: ["USER"],
         }),
         getAgentByEmail: builder.query({
             query: (email) => ({
-                url: `user/search-agent/${email}`,
+                url: `/user/search-agent/${email}`,
                 method: "GET",
             }),
             providesTags: ["USER"],
         }),
         getAdmin: builder.query({
             query: () => ({
-                url: `user/get-admin`,
+                url: `/user/get-admin`,
+                method: "GET",
+            }),
+            providesTags: ["USER"],
+        }),
+        userAnalytics: builder.query({
+            query: () => ({
+                url: `/user/analytics`,
                 method: "GET",
             }),
             providesTags: ["USER"],
         }),
         updateProfile: builder.mutation({
             query: ({ userId, ...payload }) => ({
-                url: `user/${userId}`,
+                url: `/user/${userId}`,
                 method: "PATCH",
                 data: payload,
             }),
@@ -44,4 +51,4 @@ export const userApi = baseApi.injectEndpoints({
     })
 })
 
-export const { useGetAgentByEmailQuery,useUpdateProfileMutation,useGetUserByEmailQuery, useCashInMutation, useGetAdminQuery } = userApi
+export const { useUserAnalyticsQuery,useGetAgentByEmailQuery,useUpdateProfileMutation,useGetUserByEmailQuery, useCashInMutation, useGetAdminQuery } = userApi

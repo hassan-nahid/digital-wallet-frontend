@@ -16,8 +16,15 @@ export const walletApi = baseApi.injectEndpoints({
                 method: "GET",
             }),
             providesTags: ["WALLET"],
+        }),
+        walletAnalytics: builder.query({
+            query: () => ({
+                url: "/wallet/analytics",
+                method: "GET",
+            }),
+            providesTags: ["WALLET"],
         })
     })
 })
 
-export const { useWalletInfoQuery, useLogoutMutation } = walletApi
+export const { useWalletAnalyticsQuery, useWalletInfoQuery, useLogoutMutation } = walletApi

@@ -13,25 +13,39 @@ import {
   SidebarRail,
 } from "@/components/ui/sidebar"
 import { Link } from "react-router"
-import { useUserInfoQuery } from "@/redux/features/auth/auth.api"
+import { authAPi, useLogoutMutation, useUserInfoQuery } from "@/redux/features/auth/auth.api"
 import Logo from "@/assets/Logo/Logo"
 import { getSidebarItem } from "@/utils/getSidebarItems"
+import { Button } from "./ui/button"
+import { useAppDispatch } from "@/redux/hook"
 
 // This is sample data.
 
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
 
-  const {data: userData} = useUserInfoQuery(undefined)
+  const { data: userData } = useUserInfoQuery(undefined)
 
   const data = {
-  navMain: getSidebarItem(userData?.data?.role)
+    navMain: getSidebarItem(userData?.data?.role)
+  }
+
+const [logout] = useLogoutMutation()
+const dispatch = useAppDispatch()
+
+const handleLogout = async () => {
+  try {
+    await logout(undefined).unwrap()  // ✅ নিশ্চিতভাবে resolve হওয়া পর্যন্ত wait করবে
+    dispatch(authAPi.util.resetApiState())
+  } catch (error) {
+    console.error("Logout failed:", error)
+  }
 }
 
   return (
     <Sidebar {...props}>
       <SidebarHeader>
-        <Link to="/"><Logo/></Link>
+        <Link to="/"><Logo /></Link>
       </SidebarHeader>
       <SidebarContent>
         {/* We create a SidebarGroup for each parent. */}
@@ -51,6 +65,9 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
             </SidebarGroupContent>
           </SidebarGroup>
         ))}
+        <div className="p-2">
+          <Button onClick={handleLogout} className="w-full">Logout</Button>
+        </div>
       </SidebarContent>
       <SidebarRail />
     </Sidebar>

@@ -95,9 +95,9 @@ const WalletOverview = () => {
           )}
         </div>
         <div className="flex gap-2 sm:gap-4 justify-between mt-2">
-          <Button className="flex-1 text-xs sm:text-base py-2 cursor-pointer sm:py-3" variant="outline" onClick={() => navigate('/agent/cash-in')} disabled={isLoading}>Cash In</Button>
-          <Button className="flex-1 text-xs sm:text-base py-2 cursor-pointer sm:py-3" variant="outline" onClick={() => navigate('/agent/cash-out')} disabled={isLoading}>Cash Out</Button>
-          <Button className="flex-1 text-xs sm:text-base py-2 cursor-pointer sm:py-3" variant="outline" onClick={() => navigate('/agent/transactions')} disabled={isLoading}>Transactions</Button>
+          <Button className="flex-1 text-xs sm:text-base py-2 cursor-pointer sm:py-3" variant="outline" onClick={() => navigate('/admin/cash-in')} disabled={isLoading}>Cash In</Button>
+          <Button className="flex-1 text-xs sm:text-base py-2 cursor-pointer sm:py-3" variant="outline" onClick={() => navigate('/admin/withdraw')} disabled={isLoading}>Withdraw</Button>
+          <Button className="flex-1 text-xs sm:text-base py-2 cursor-pointer sm:py-3" variant="outline" onClick={() => navigate('/admin/my-transactions')} disabled={isLoading}>My Transactions</Button>
         </div>
       </div>
     </div>
