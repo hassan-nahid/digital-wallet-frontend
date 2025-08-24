@@ -50,14 +50,29 @@ export const transactionApi = baseApi.injectEndpoints({
             }),
             providesTags: ["TRANSACTION"],
         }),
+        getSingleTransactionsById: builder.query({
+            query: (tranId) => ({
+                url: `/transaction/single-transactions/${tranId}`,
+                method: "GET",
+            }),
+            providesTags: ["TRANSACTION"],
+        }),
         transactionsAnalytics: builder.query({
             query: () => ({
                 url: `/transaction/analytics`,
                 method: "GET",
             }),
             providesTags: ["TRANSACTION"],
+        }),
+        getAllTransactions: builder.query({
+            query: (params) => ({
+                url: `/transaction/all-transactions`,
+                method: "GET",
+                params
+            }),
+            providesTags: ["TRANSACTION"],
         })
     })
 })
 
-export const {useTransactionsAnalyticsQuery,useAdminWithdrawMutation ,useSendMoneyMutation,useMyTransactionsByIdQuery, useMyTransactionsQuery, useCashOutMutation, useCashInMutation } = transactionApi
+export const {useGetSingleTransactionsByIdQuery,useGetAllTransactionsQuery,useTransactionsAnalyticsQuery,useAdminWithdrawMutation ,useSendMoneyMutation,useMyTransactionsByIdQuery, useMyTransactionsQuery, useCashOutMutation, useCashInMutation } = transactionApi
