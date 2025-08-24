@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { useState } from "react";
+import { toast } from "sonner";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogClose } from "@/components/ui/dialog";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -67,9 +68,12 @@ const ManageAgent = () => {
   // Approve/Suspend handler
   const handleApproveToggle = async (user: any) => {
     try {
-      await updateProfile({ userId: user._id, isAgentApproved: !user.isAgentApproved });
-    } catch (err) {
-      console.log(err)
+      await updateProfile({ userId: user._id, isAgentApproved: !user.isAgentApproved }).unwrap();
+      toast.success(
+        user.isAgentApproved ? "Agent suspended successfully." : "Agent approved successfully."
+      );
+    } catch {
+      toast.error("Failed to update agent status.");
     }
   };
 
@@ -225,10 +229,15 @@ const ManageAgent = () => {
                   className="mt-2"
                   disabled={makingAgent}
                   onClick={async () => {
-                    await makeAgent({ userId: searchedUser.data._id });
-                    setMakeAgentModal(false);
-                    setEmail("");
-                    setSearched(false);
+                    try {
+                      await makeAgent({ userId: searchedUser.data._id }).unwrap();
+                      toast.success("User promoted to agent successfully.");
+                      setMakeAgentModal(false);
+                      setEmail("");
+                      setSearched(false);
+                    } catch {
+                      toast.error("Failed to make user an agent.");
+                    }
                   }}
                 >
                   Make Agent

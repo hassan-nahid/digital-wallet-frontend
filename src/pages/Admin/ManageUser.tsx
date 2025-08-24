@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { useState } from "react";
+import { toast } from "sonner";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogClose } from "@/components/ui/dialog";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -58,10 +59,12 @@ const ManageUser = () => {
   // Block/Unblock handler
   const handleBlockToggle = async (user: any) => {
     try {
-      await updateProfile({ userId: user._id, isActive: user.isActive === "ACTIVE" ? "BLOCKED" : "ACTIVE" });
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    } catch (err) {
-      // Optionally show error toast
+      await updateProfile({ userId: user._id, isActive: user.isActive === "ACTIVE" ? "BLOCKED" : "ACTIVE" }).unwrap();
+      toast.success(
+        user.isActive === "ACTIVE" ? "User blocked successfully." : "User unblocked successfully."
+      );
+    } catch {
+      toast.error("Failed to update user status.");
     }
   };
 

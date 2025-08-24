@@ -3,12 +3,19 @@ import { baseApi } from "@/redux/baseApi";
 
 export const walletApi = baseApi.injectEndpoints({
     endpoints: (builder) => ({
-        logout: builder.mutation({
-            query: () => ({
-                url: "/auth/logout",
-                method: "POST",
+        blockWallet: builder.mutation({
+            query: (userId) => ({
+                url: `/wallet/block-wallet/${userId}`,
+                method: "PATCH",
             }),
-            invalidatesTags: ["USER"],
+            invalidatesTags: ["WALLET"],
+        }),
+        unBlockWallet: builder.mutation({
+            query: (userId) => ({
+                url: `/wallet/unblock-wallet/${userId}`,
+                method: "PATCH",
+            }),
+            invalidatesTags: ["WALLET"],
         }),
         walletInfo: builder.query({
             query: () => ({
@@ -23,8 +30,16 @@ export const walletApi = baseApi.injectEndpoints({
                 method: "GET",
             }),
             providesTags: ["WALLET"],
+        }),
+        getAllWallet: builder.query({
+            query: (params) => ({
+                url: "/wallet",
+                method: "GET",
+                params,
+            }),
+            providesTags: ["WALLET"],
         })
     })
 })
 
-export const { useWalletAnalyticsQuery, useWalletInfoQuery, useLogoutMutation } = walletApi
+export const {useGetAllWalletQuery, useWalletAnalyticsQuery, useWalletInfoQuery, useBlockWalletMutation,useUnBlockWalletMutation } = walletApi
