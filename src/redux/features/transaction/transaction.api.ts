@@ -27,6 +27,14 @@ export const transactionApi = baseApi.injectEndpoints({
             }),
             invalidatesTags: ["TRANSACTION"],
         }),
+        adminWithdraw: builder.mutation({
+            query: (transactionInfo) => ({
+                url: "transaction/admin-withdraw",
+                method: "POST",
+                data: transactionInfo
+            }),
+            invalidatesTags: ["TRANSACTION"],
+        }),
         myTransactions: builder.query({
             query: (params) => ({
                 url: "/transaction/my-transactions",
@@ -45,4 +53,4 @@ export const transactionApi = baseApi.injectEndpoints({
     })
 })
 
-export const { useSendMoneyMutation,useMyTransactionsByIdQuery, useMyTransactionsQuery, useCashOutMutation, useCashInMutation } = transactionApi
+export const {useAdminWithdrawMutation ,useSendMoneyMutation,useMyTransactionsByIdQuery, useMyTransactionsQuery, useCashOutMutation, useCashInMutation } = transactionApi
