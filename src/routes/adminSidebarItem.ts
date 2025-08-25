@@ -22,7 +22,7 @@ export const adminSidebarItem: ISidebarItem[] = [
     items: [
       {
         title: "Analaytics",
-        url: "/admin/analytics",
+        url: "/admin/analaytics",
         component: Analaytics
       },
       {

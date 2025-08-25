@@ -3,16 +3,32 @@ import loginImage from "../assets/image/login.jpg"
 import Logo from "@/assets/Logo/Logo"
 import { Link, useNavigate } from "react-router"
 import { useUserInfoQuery } from "@/redux/features/auth/auth.api"
+import { useEffect } from "react";
 
 
 export default function Login() {
+  const { data } = useUserInfoQuery(undefined)
+  const navigate = useNavigate()
 
-  const {data} = useUserInfoQuery(undefined)
-  const nagivate = useNavigate()
-
-  if(data?.data?.email){
-    nagivate("/")
-  }
+  useEffect(() => {
+    if (data?.data?.role) {
+      let redirect = "/";
+      switch (data.data.role.toUpperCase()) {
+        case "USER":
+          redirect = "/user/overview";
+          break;
+        case "AGENT":
+          redirect = "/agent/overview";
+          break;
+        case "ADMIN":
+          redirect = "/admin/analaytics";
+          break;
+        default:
+          redirect = "/";
+      }
+      navigate(redirect, { replace: true });
+    }
+  }, [data, navigate]);
 
   return (
     <div className="grid min-h-svh lg:grid-cols-2">

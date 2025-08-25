@@ -2,12 +2,14 @@
 import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
-import { Link, useNavigate } from "react-router"
+import { Link } from "react-router"
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form"
 import { useForm } from "react-hook-form"
 import { z } from "zod"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useLoginMutation } from "@/redux/features/auth/auth.api"
+import { useDispatch } from "react-redux";
+import { baseApi } from "@/redux/baseApi";
 import { toast } from "sonner"
 import Password from "../RegisterPage/Password"
 const loginSchema = z.object({
@@ -18,7 +20,7 @@ const loginSchema = z.object({
 
 export function LoginForm({ className }: { className?: string }) {
     const [login] = useLoginMutation();
-    const navigate = useNavigate()
+    const dispatch = useDispatch();
 
     const form = useForm<z.infer<typeof loginSchema>>({
         resolver: zodResolver(loginSchema),
@@ -34,7 +36,8 @@ export function LoginForm({ className }: { className?: string }) {
             console.log(result)
             if (result.data?.success) {
                 toast(result.data?.message || "User Logged In Successfully")
-                navigate("/")
+                // Invalidate USER tag to force userInfo refetch
+                dispatch(baseApi.util.invalidateTags(["USER"]));
             } else {
                 // Try to get error message from result.error or result.data
                 let errorMessage = "Registration failed";
