@@ -125,8 +125,8 @@ const Analaytics = () => {
         <div className="border-b border-border mt-4" />
       </div>
 
-      {/* Summary Cards */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+  {/* Summary Cards */}
+  <div id="dashboard-analytics-cards" className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
         {isLoading
           ? Array.from({ length: 8 }).map((_, idx) => (
               <Card key={idx} className="flex flex-col items-center justify-center py-8">
@@ -160,9 +160,9 @@ const Analaytics = () => {
       </div>
 
       {/* Charts Section */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+      <div id="dashboard-analytics-chart" className="grid grid-cols-1 lg:grid-cols-2 gap-8">
         {/* Bar Chart */}
-        <Card>
+        <Card id="dashboard-analytics-chart">
           <CardHeader>
             <CardTitle className="flex items-center gap-2"><BarChart3 className="w-5 h-5 text-indigo-400" /> Platform Overview</CardTitle>
           </CardHeader>

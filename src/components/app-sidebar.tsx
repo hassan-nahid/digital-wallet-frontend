@@ -43,7 +43,7 @@ const handleLogout = async () => {
 }
 
   return (
-    <Sidebar {...props}>
+    <Sidebar {...props} id="sidebar-nav">
       <SidebarHeader>
         <Link to="/"><Logo /></Link>
       </SidebarHeader>

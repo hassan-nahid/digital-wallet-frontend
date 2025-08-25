@@ -27,7 +27,7 @@ const Overview = () => {
 
   return (
     <div className="flex flex-col items-center min-h-[60vh] bg-background">
-      <div className="w-full max-w-md bg-white dark:bg-muted rounded-xl shadow-lg p-4 sm:p-8 flex flex-col gap-6 sm:gap-8 border border-primary/20">
+      <div id="wallet-overview" className="w-full max-w-md bg-white dark:bg-muted rounded-xl shadow-lg p-4 sm:p-8 flex flex-col gap-6 sm:gap-8 border border-primary/20">
         <div className="flex items-center gap-4 sm:gap-6">
           {isLoading ? (
             <Skeleton className="w-14 h-14 sm:w-20 sm:h-20 rounded-full" />
@@ -113,7 +113,7 @@ const Overview = () => {
         </div>
       </div>
       {/* Recent Activities Card at Bottom */}
-      <div className="w-full max-w-md mt-6 bg-white dark:bg-muted rounded-xl shadow-lg p-4 sm:p-8 border border-primary/20">
+      <div id="recent-transactions" className="w-full max-w-md mt-6 bg-white dark:bg-muted rounded-xl shadow-lg p-4 sm:p-8 border border-primary/20">
         <div className="font-semibold text-primary mb-2">Recent Activities</div>
         {txLoading ? (
           <Skeleton className="h-6 w-full mb-2" />
