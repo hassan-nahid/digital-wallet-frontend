@@ -35,7 +35,7 @@ const dispatch = useAppDispatch()
 
 const handleLogout = async () => {
   try {
-    await logout(undefined).unwrap()  // ✅ নিশ্চিতভাবে resolve হওয়া পর্যন্ত wait করবে
+    await logout(undefined).unwrap()  
     dispatch(authAPi.util.resetApiState())
   } catch (error) {
     console.error("Logout failed:", error)

@@ -49,7 +49,7 @@ const formSchema = z.object({
 
 
 export function RegisterForm({ className }: { className?: string }) {
-    const [register] = useRegisterMutation()
+    const [register, { isLoading }] = useRegisterMutation()
     const navigate = useNavigate()
 
     const form = useForm<z.infer<typeof formSchema>>({
@@ -242,7 +242,9 @@ export function RegisterForm({ className }: { className?: string }) {
                                 </FormItem>
                             )}
                         />
-                        <Button type="submit" className="w-full cursor-pointer">Register</Button>
+                        <Button type="submit" className="w-full cursor-pointer" disabled={isLoading}>
+                            {isLoading ? "Registering..." : "Register"}
+                        </Button>
                     </form>
                 </Form>
             </div>

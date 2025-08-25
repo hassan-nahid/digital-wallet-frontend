@@ -19,7 +19,7 @@ const loginSchema = z.object({
 
 
 export function LoginForm({ className }: { className?: string }) {
-    const [login] = useLoginMutation();
+    const [login, { isLoading }] = useLoginMutation();
     const dispatch = useDispatch();
 
     const form = useForm<z.infer<typeof loginSchema>>({
@@ -110,7 +110,9 @@ export function LoginForm({ className }: { className?: string }) {
                                 </FormItem>
                             )}
                         />
-                        <Button type="submit" className="w-full cursor-pointer">Login</Button>
+                        <Button type="submit" className="w-full cursor-pointer" disabled={isLoading}>
+                            {isLoading ? "Logging in..." : "Login"}
+                        </Button>
                     </form>
                 </Form>
             </div>
