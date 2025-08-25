@@ -2,6 +2,8 @@ import { useWalletInfoQuery } from "@/redux/features/wallet/wallet.api";
 import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
 import { useState } from "react";
+import { useMyTransactionsQuery } from '@/redux/features/transaction/transaction.api';
+import type { Transaction } from '@/types/transaction';
 import { useNavigate } from "react-router";
 
 const Overview = () => {
@@ -19,8 +21,12 @@ const Overview = () => {
     }
   };
 
+  // Fetch recent transactions (last 5)
+  const { data: txData, isLoading: txLoading } = useMyTransactionsQuery({ limit: 5, page: 1 });
+  const recentTx: Transaction[] = txData?.data || [];
+
   return (
-    <div className="flex justify-center items-center min-h-[60vh] bg-background">
+    <div className="flex flex-col items-center min-h-[60vh] bg-background">
       <div className="w-full max-w-md bg-white dark:bg-muted rounded-xl shadow-lg p-4 sm:p-8 flex flex-col gap-6 sm:gap-8 border border-primary/20">
         <div className="flex items-center gap-4 sm:gap-6">
           {isLoading ? (
@@ -98,11 +104,40 @@ const Overview = () => {
             </>
           )}
         </div>
+
+
         <div className="flex gap-2 sm:gap-4 justify-between mt-2">
           <Button className="flex-1 text-xs sm:text-base py-2 cursor-pointer sm:py-3" variant="outline" onClick={() => navigate('/agent/cash-in')} disabled={isLoading}>Cash In</Button>
           <Button className="flex-1 text-xs sm:text-base py-2 cursor-pointer sm:py-3" variant="outline" onClick={() => navigate('/agent/cash-out')} disabled={isLoading}>Cash Out</Button>
           <Button className="flex-1 text-xs sm:text-base py-2 cursor-pointer sm:py-3" variant="outline" onClick={() => navigate('/agent/transactions')} disabled={isLoading}>Transactions</Button>
         </div>
+      </div>
+      {/* Recent Activities Card at Bottom */}
+      <div className="w-full max-w-md mt-6 bg-white dark:bg-muted rounded-xl shadow-lg p-4 sm:p-8 border border-primary/20">
+        <div className="font-semibold text-primary mb-2">Recent Activities</div>
+        {txLoading ? (
+          <Skeleton className="h-6 w-full mb-2" />
+        ) : recentTx.length === 0 ? (
+          <div className="text-xs text-muted-foreground">No recent transactions found.</div>
+        ) : (
+          <ul className="divide-y divide-primary/10">
+            {recentTx.map((tx) => (
+              <li key={tx._id} className="py-2 flex flex-col gap-0.5">
+                <div className="flex justify-between text-xs">
+                  <span className="font-medium text-primary">{tx.transactionType.replace(/_/g, ' ')}</span>
+                  <span className={
+                    tx.status === 'approved' ? 'text-green-600' : tx.status === 'pending' ? 'text-yellow-600' : 'text-red-600'
+                  }>{tx.status}</span>
+                </div>
+                <div className="flex justify-between text-xs">
+                  <span>৳ {tx.amount}</span>
+                  <span>{new Date(tx.createdAt).toLocaleString()}</span>
+                </div>
+                {tx.description && <div className="text-muted-foreground text-xs">{tx.description}</div>}
+              </li>
+            ))}
+          </ul>
+        )}
       </div>
     </div>
   );
