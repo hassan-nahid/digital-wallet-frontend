@@ -58,10 +58,6 @@ const Overview = () => {
                 <div className="text-sm sm:text-base text-muted-foreground">{user?.email}</div>
                 <div className="text-xs sm:text-sm text-muted-foreground">{user?.phone}</div>
                 <div className="text-xs sm:text-sm text-muted-foreground">Role: <span className="font-semibold text-primary">{user?.role}</span></div>
-                <div className="flex items-center gap-2">
-                  <span className="text-xs text-muted-foreground">Approved:</span>
-                  <span className={`font-semibold ${user?.isAgentApproved ? 'text-green-600' : 'text-red-500'}`}>{user?.isAgentApproved ? 'Yes' : 'No'}</span>
-                </div>
                 <div className="text-xs sm:text-sm text-muted-foreground">NID: <span className="font-semibold">{user?.nid}</span></div>
                 <div className="text-xs sm:text-sm text-muted-foreground flex items-center gap-1 sm:gap-2">UID:
                   <span className="font-mono font-semibold select-all">{user?._id}</span>
