@@ -22,8 +22,14 @@ const Overview = () => {
   };
 
   // Fetch recent transactions (last 5)
-  const { data: txData, isLoading: txLoading } = useMyTransactionsQuery({ limit: 5, page: 1 });
+
+  const { data: txData, isLoading: txLoading } = useMyTransactionsQuery({ limit: 10000000});
   const recentTx: Transaction[] = txData?.data || [];
+
+
+  // Calculate total cash-in and cash-out from recent transactions
+  const totalCashIn = recentTx.filter(tx => tx.transactionType === 'cash_in').reduce((sum, tx) => sum + (tx.amount || 0), 0);
+  const totalCashOut = recentTx.filter(tx => tx.transactionType === 'cash_out').reduce((sum, tx) => sum + (tx.amount || 0), 0);
 
   return (
     <div className="flex flex-col items-center min-h-[60vh] bg-background">
@@ -114,6 +120,16 @@ const Overview = () => {
       </div>
       {/* Recent Activities Card at Bottom */}
       <div id="recent-transactions" className="w-full max-w-md mt-6 bg-white dark:bg-muted rounded-xl shadow-lg p-4 sm:p-8 border border-primary/20">
+        <div className="flex justify-between mb-2">
+          <div className="flex flex-col items-center flex-1">
+            <span className="text-xs text-muted-foreground">Total Cash In</span>
+            <span className="text-base font-bold text-green-600">৳ {totalCashIn.toLocaleString()}</span>
+          </div>
+          <div className="flex flex-col items-center flex-1">
+            <span className="text-xs text-muted-foreground">Total Cash Out</span>
+            <span className="text-base font-bold text-red-500">৳ {totalCashOut.toLocaleString()}</span>
+          </div>
+        </div>
         <div className="font-semibold text-primary mb-2">Recent Activities</div>
         {txLoading ? (
           <Skeleton className="h-6 w-full mb-2" />
@@ -121,7 +137,7 @@ const Overview = () => {
           <div className="text-xs text-muted-foreground">No recent transactions found.</div>
         ) : (
           <ul className="divide-y divide-primary/10">
-            {recentTx.map((tx) => (
+            {recentTx.slice(0, 5).map((tx) => (
               <li key={tx._id} className="py-2 flex flex-col gap-0.5">
                 <div className="flex justify-between text-xs">
                   <span className="font-medium text-primary">{tx.transactionType.replace(/_/g, ' ')}</span>

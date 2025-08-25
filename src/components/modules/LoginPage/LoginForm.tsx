@@ -33,14 +33,13 @@ export function LoginForm({ className }: { className?: string }) {
     const onSubmit = async (data: z.infer<typeof loginSchema>) => {
         try {
             const result = await login(data)
-            console.log(result)
             if (result.data?.success) {
                 toast(result.data?.message || "User Logged In Successfully")
                 // Invalidate USER tag to force userInfo refetch
                 dispatch(baseApi.util.invalidateTags(["USER"]));
             } else {
                 // Try to get error message from result.error or result.data
-                let errorMessage = "Registration failed";
+                let errorMessage = "Login failed";
                 if (result.error && typeof result.error === "object") {
                     if ("data" in result.error && typeof result.error.data === "object" && result.error.data && "message" in result.error.data) {
                         errorMessage = (result.error.data as { message?: string }).message || errorMessage;
