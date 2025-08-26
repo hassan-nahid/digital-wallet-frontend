@@ -1,5 +1,6 @@
 import axios, { type AxiosRequestConfig } from "axios"
 import config from "../config";
+import { toast } from "sonner";
 export const axiosInstance = axios.create({
     baseURL: config.baseUrl,
     withCredentials: true,
@@ -43,9 +44,16 @@ axiosInstance.interceptors.response.use(
     const originalRequest = error.config as AxiosRequestConfig & {
       _retry: boolean
     };
+    console.log(error?.response?.data.message)
+    console.log(error?.response?.status)
 
-
-
+    // Show toast if user is blocked
+    if (
+      error.response?.status === 403 &&
+      error.response?.data?.message === "User is blocked"
+    ) {
+      toast.error("User is blocked");
+    }
 
     if(
       error.response.status === 500 &&
