@@ -73,6 +73,13 @@ export function LoginForm({ className }: { className?: string }) {
         }
     }
 
+    // Demo credentials
+    const demoCredentials = [
+        { label: "User Demo", email: "user1@gmail.com", password: "StrongP@ss1" },
+        { label: "Admin Demo", email: "admin.demo@email.com", password: "Admin@1234" },
+        { label: "Agent Demo", email: "agent1@gmail.com", password: "StrongP@ss1" },
+    ];
+
     return (
         <div className={cn("flex flex-col gap-6", className)}>
             <div className="flex flex-col items-center gap-2 text-center">
@@ -80,6 +87,28 @@ export function LoginForm({ className }: { className?: string }) {
                 <p className="text-muted-foreground text-sm text-balance">
                     Enter your email below to login to your account
                 </p>
+                <div className="flex flex-col items-center gap-2 mt-2">
+                    <span className="text-xs text-muted-foreground mb-1">
+                        You can use your own credentials, or click a demo button to autofill both email and password for User, Admin, or Agent.<br />
+                        <span className="font-semibold">Note:</span> Demo buttons will set both fields automatically.
+                    </span>
+                    <div className="flex gap-2">
+                        {demoCredentials.map((cred) => (
+                            <Button
+                                key={cred.label}
+                                type="button"
+                                variant="outline"
+                                size="sm"
+                                onClick={() => {
+                                    form.setValue("email", cred.email);
+                                    form.setValue("password", cred.password);
+                                }}
+                            >
+                                {cred.label}
+                            </Button>
+                        ))}
+                    </div>
+                </div>
             </div>
             <div className="grid gap-6">
                 <Form {...form}>
