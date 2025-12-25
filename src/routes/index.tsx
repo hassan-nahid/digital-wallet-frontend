@@ -6,6 +6,11 @@ import Features from "@/pages/Features";
 import HomePage from "@/pages/HomePage";
 import Login from "@/pages/Login";
 import Register from "@/pages/Register";
+import Services from "@/pages/Services";
+import CashOutService from "@/pages/CashOutService";
+import CashInService from "@/pages/CashInService";
+import SendMoneyService from "@/pages/SendMoneyService";
+import TransactionsService from "@/pages/TransactionsService";
 import { withAuth } from "@/utils/withAuth";
 import { createBrowserRouter, Navigate } from "react-router";
 import { adminSidebarItem } from "./adminSidebarItem";
@@ -43,6 +48,26 @@ export const router = createBrowserRouter([
       {
         Component: FAQ,
         path: "faq"
+      },
+      {
+        Component: Services,
+        path: "services"
+      },
+      {
+        Component: CashOutService,
+        path: "services/cash-out"
+      },
+      {
+        Component: CashInService,
+        path: "services/cash-in"
+      },
+      {
+        Component: SendMoneyService,
+        path: "services/send-money"
+      },
+      {
+        Component: TransactionsService,
+        path: "services/transactions"
       },
     ]
   },

@@ -1,6 +1,7 @@
 import Logo from "@/assets/Logo/Logo";
 import React from "react";
 import { FaFacebook, FaInstagram, FaLinkedin, FaTwitter } from "react-icons/fa";
+import { Link } from "react-router";
 
 interface Footer7Props {
   logo?: {
@@ -28,48 +29,48 @@ interface Footer7Props {
 
 const defaultSections = [
   {
-    title: "Product",
+    title: "Quick Links",
     links: [
-      { name: "Overview", href: "#" },
-      { name: "Pricing", href: "#" },
-      { name: "Marketplace", href: "#" },
-      { name: "Features", href: "#" },
+      { name: "Home", href: "/" },
+      { name: "About", href: "/about" },
+      { name: "Features", href: "/features" },
+      { name: "Contact", href: "/contact" },
     ],
   },
   {
-    title: "Company",
+    title: "Support",
     links: [
-      { name: "About", href: "#" },
-      { name: "Team", href: "#" },
-      { name: "Blog", href: "#" },
-      { name: "Careers", href: "#" },
+      { name: "FAQ", href: "/faq" },
+      { name: "Help Center", href: "/contact" },
+      { name: "Contact Us", href: "/contact" },
+      { name: "About Us", href: "/about" },
     ],
   },
   {
-    title: "Resources",
+    title: "Legal",
     links: [
-      { name: "Help", href: "#" },
-      { name: "Sales", href: "#" },
-      { name: "Advertise", href: "#" },
-      { name: "Privacy", href: "#" },
+      { name: "Privacy Policy", href: "/contact" },
+      { name: "Terms of Service", href: "/contact" },
+      { name: "Security", href: "/features" },
+      { name: "Cookie Policy", href: "/contact" },
     ],
   },
 ];
 
 const defaultSocialLinks = [
-  { icon: <FaInstagram className="size-5" />, href: "#", label: "Instagram" },
-  { icon: <FaFacebook className="size-5" />, href: "#", label: "Facebook" },
-  { icon: <FaTwitter className="size-5" />, href: "#", label: "Twitter" },
-  { icon: <FaLinkedin className="size-5" />, href: "#", label: "LinkedIn" },
+  { icon: <FaInstagram className="size-5" />, href: "https://www.instagram.com/HassanNahid10", label: "Instagram" },
+  { icon: <FaFacebook className="size-5" />, href: "https://www.facebook.com/HassanNahid10", label: "Facebook" },
+  { icon: <FaTwitter className="size-5" />, href: "https://x.com/HassanNahid100", label: "X" },
+  { icon: <FaLinkedin className="size-5" />, href: "https://www.linkedin.com/in/hassan-nahid", label: "LinkedIn" },
 ];
 
 
 const Footer = ({
  
   sections = defaultSections,
-  description = "A collection of components for your startup business or side project.",
+  description = "WalletX - Your trusted digital wallet solution. Built by Hassan Nahid.",
   socialLinks = defaultSocialLinks,
-  copyright = "© 2025 WalletX All rights reserved."
+  copyright = "© 2025 WalletX. Developed by Hassan Nahid. All rights reserved."
 }: Footer7Props) => {
   return (
     <section className="container mx-auto px-4 md:px-6 mt-8">
@@ -103,7 +104,7 @@ const Footer = ({
                       key={linkIdx}
                       className="hover:text-primary font-medium"
                     >
-                      <a href={link.href}>{link.name}</a>
+                      <Link to={link.href}>{link.name}</Link>
                     </li>
                   ))}
                 </ul>

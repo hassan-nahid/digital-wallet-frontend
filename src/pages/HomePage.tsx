@@ -7,6 +7,7 @@ import Statistics from "@/components/modules/HomePage/Statistics"
 import SecurityTrust from "@/components/modules/HomePage/SecurityTrust"
 import Pricing from "@/components/modules/HomePage/Pricing"
 import FAQ from "@/components/modules/HomePage/FAQ"
+import Newsletter from "@/components/modules/HomePage/Newsletter"
 
 const HomePage = () => {
   return (
@@ -19,6 +20,7 @@ const HomePage = () => {
       <Pricing/>
       <Testimonials/>
       <FAQ/>
+      <Newsletter/>
       <CallToAction/>
     </div>
   )

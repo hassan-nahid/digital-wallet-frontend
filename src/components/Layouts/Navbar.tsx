@@ -11,12 +11,19 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover"
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu"
 import { Link } from "react-router"
 import { ModeToggle } from "./ModeToggle"
 import { authAPi, useLogoutMutation, useUserInfoQuery } from "@/redux/features/auth/auth.api"
 import { useAppDispatch } from "@/redux/hook"
 import { role } from "@/constants/role"
 import React from "react"
+import { Wallet, Send, ArrowDownToLine, ArrowUpFromLine, ChevronDown } from "lucide-react"
 
 // Navigation links array to be used in both desktop and mobile menus
 const navigationLinks = [
@@ -148,6 +155,55 @@ const handleLogout = async () => {
                     )}
                   </React.Fragment>
                 ))}
+                
+                {/* Advanced Dropdown Menu - Services */}
+                <NavigationMenuItem>
+                  <DropdownMenu>
+                    <DropdownMenuTrigger asChild>
+                      <Button variant="ghost" className="text-muted-foreground hover:text-primary font-medium flex items-center gap-1">
+                        Services <ChevronDown className="h-4 w-4" />
+                      </Button>
+                    </DropdownMenuTrigger>
+                    <DropdownMenuContent align="start" className="w-56">
+                      <DropdownMenuItem asChild>
+                        <Link to="/services/cash-out" className="flex items-center gap-2 cursor-pointer">
+                          <ArrowUpFromLine className="h-4 w-4 text-primary" />
+                          <div>
+                            <div className="font-medium">Cash Out</div>
+                            <div className="text-xs text-muted-foreground">Withdraw money</div>
+                          </div>
+                        </Link>
+                      </DropdownMenuItem>
+                      <DropdownMenuItem asChild>
+                        <Link to="/services/cash-in" className="flex items-center gap-2 cursor-pointer">
+                          <ArrowDownToLine className="h-4 w-4 text-primary" />
+                          <div>
+                            <div className="font-medium">Cash In</div>
+                            <div className="text-xs text-muted-foreground">Deposit money</div>
+                          </div>
+                        </Link>
+                      </DropdownMenuItem>
+                      <DropdownMenuItem asChild>
+                        <Link to="/services/send-money" className="flex items-center gap-2 cursor-pointer">
+                          <Send className="h-4 w-4 text-primary" />
+                          <div>
+                            <div className="font-medium">Send Money</div>
+                            <div className="text-xs text-muted-foreground">Transfer funds</div>
+                          </div>
+                        </Link>
+                      </DropdownMenuItem>
+                      <DropdownMenuItem asChild>
+                        <Link to="/services/transactions" className="flex items-center gap-2 cursor-pointer">
+                          <Wallet className="h-4 w-4 text-primary" />
+                          <div>
+                            <div className="font-medium">Transactions</div>
+                            <div className="text-xs text-muted-foreground">View history</div>
+                          </div>
+                        </Link>
+                      </DropdownMenuItem>
+                    </DropdownMenuContent>
+                  </DropdownMenu>
+                </NavigationMenuItem>
               </NavigationMenuList>
             </NavigationMenu>
           </div>
