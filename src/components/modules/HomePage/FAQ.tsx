@@ -1,120 +1,108 @@
 import { useState } from "react";
-import { ChevronDown, ChevronUp, HelpCircle } from "lucide-react";
 
-const faqs = [
+const faqData = [
   {
-    question: "How secure is my money in the digital wallet?",
-    answer: "Your funds are protected with bank-level security including 256-bit encryption, multi-factor authentication, and fraud monitoring. We're PCI DSS Level 1 compliant and use cold storage for fund protection."
+    q: "How secure is my money?",
+    a: "Every sign-in is checked, and you can add biometric login and multi-factor codes by SMS, email or authenticator app. Fraud monitoring watches for unusual activity as it happens.",
   },
   {
-    question: "How long do transfers take to complete?",
-    answer: "Most transfers are instant within our network. External bank transfers typically take 1-3 business days depending on your bank. International transfers can take 1-5 business days."
+    q: "How long do transfers take?",
+    a: "Transfers between WalletX wallets arrive instantly. Withdrawals to a bank account follow your bank’s own processing time.",
   },
   {
-    question: "Are there any fees for using the wallet?",
-    answer: "Personal accounts enjoy free basic transactions. Premium features like international transfers, currency conversion, and business tools have competitive fees clearly displayed before confirmation."
+    q: "Are there any fees?",
+    a: "Sending money is free under ৳1,000, ৳10 from ৳1,000 to ৳20,000 and ৳15 above that. Cashing out through an agent costs ৳10 per ৳1,000. Use the calculator above to see the exact amount.",
   },
   {
-    question: "Can I use the wallet internationally?",
-    answer: "Yes! Our wallet supports over 50 currencies and works in 150+ countries. You can send money globally, convert currencies, and make payments worldwide with competitive exchange rates."
+    q: "What happens if I lose my phone?",
+    a: "Your balance lives in your account, not on the device. Contact support from any phone and we will lock the wallet until you can sign in again.",
   },
   {
-    question: "What happens if I lose my phone?",
-    answer: "Your account remains secure with our multi-layer protection. Simply log in from another device using your credentials and two-factor authentication. You can remotely disable access from your lost device."
+    q: "How do I withdraw money?",
+    a: "Cash out through an agent at ৳10 per ৳1,000, up to ৳50,000 per transaction, or withdraw to a linked bank account from the app.",
   },
   {
-    question: "How do I withdraw money to my bank account?",
-    answer: "Go to the 'Withdraw' section, select your linked bank account, enter the amount, and confirm. Funds typically arrive within 1-2 business days for domestic transfers."
+    q: "Is there a limit on what I can send or receive?",
+    a: "Adding money and cashing out are each capped at ৳50,000 per transaction. Agents can cash in up to ৳100,000 per transaction.",
   },
   {
-    question: "Is there a limit on how much I can send or receive?",
-    answer: "Limits vary by account type and verification level. Personal accounts start with daily limits that can be increased with identity verification. Business accounts have higher limits by default."
+    q: "How do I become an agent?",
+    a: "Choose Become an agent when you register. Agents handle cash in and cash out for users and earn ৳4 for every ৳1,000 they cash out.",
   },
   {
-    question: "What customer support options are available?",
-    answer: "We offer 24/7 chat support, email support, and phone support for premium users. Our comprehensive help center and video tutorials are available anytime for self-service support."
-  }
+    q: "What support options are available?",
+    a: "Support is available around the clock in the app and by email at hassan.nahid.dev@gmail.com. Agents get priority support.",
+  },
 ];
 
 const FAQ = () => {
-  const [openIndex, setOpenIndex] = useState<number | null>(null);
+  const [openIndex, setOpenIndex] = useState<number | null>(0);
 
-  const toggleFAQ = (index: number) => {
-    setOpenIndex(openIndex === index ? null : index);
+  const toggle = (idx: number) => {
+    setOpenIndex(openIndex === idx ? null : idx);
   };
 
   return (
-    <section className="py-20 bg-background">
-      <div className="container mx-auto max-w-4xl px-4">
-        {/* Header */}
-        <div className="text-center mb-16">
-          <div className="inline-flex items-center gap-2 px-4 py-2 mb-6 text-sm font-medium bg-blue-500/10 text-blue-600 rounded-full border border-blue-500/20">
-            <HelpCircle className="h-4 w-4" />
-            Support Center
-          </div>
-          <h2 className="text-3xl font-bold mb-4 lg:text-4xl">
-            Frequently Asked Questions
+    <section id="faq" className="bg-[#F3F6F4] scroll-mt-20 w-full">
+      <div className="max-w-[1200px] mx-auto px-4 sm:px-6 py-20 lg:py-24 flex flex-wrap gap-12 lg:gap-18 items-start">
+        {/* Left Intro Text */}
+        <div className="flex-1 min-w-[280px] lg:min-w-[300px] flex flex-col gap-4.5">
+          <span className="font-['JetBrains_Mono',monospace] text-xs font-bold tracking-widest uppercase text-[#087F4C]">
+            Support center
+          </span>
+          <h2 className="m-0 font-['Bricolage_Grotesque',sans-serif] font-extrabold text-[32px] sm:text-[42px] lg:text-[48px] leading-[1.06] tracking-[-0.03em] text-[#0C1A14] text-balance">
+            Questions people ask first.
           </h2>
-          <p className="text-muted-foreground max-w-2xl mx-auto lg:text-lg">
-            Find answers to common questions about our digital wallet service
+          <p className="m-0 text-[17px] leading-[1.55] text-[#4A5D54]">
+            Still stuck? Write to{" "}
+            <a
+              href="mailto:hassan.nahid.dev@gmail.com"
+              className="text-[#087F4C] underline hover:text-[#0C1A14] transition-colors"
+            >
+              hassan.nahid.dev@gmail.com
+            </a>{" "}
+            and a person will reply.
           </p>
         </div>
 
-        {/* FAQ Items */}
-        <div className="space-y-4">
-          {faqs.map((faq, index) => (
-            <div
-              key={index}
-              className="border border-border rounded-lg overflow-hidden hover:border-primary/20 transition-colors"
-            >
-              <button
-                className="w-full px-6 py-4 text-left flex items-center justify-between hover:bg-muted/30 transition-colors"
-                onClick={() => toggleFAQ(index)}
-              >
-                <span className="font-semibold text-foreground pr-4">
-                  {faq.question}
-                </span>
-                <div className="flex-shrink-0">
-                  {openIndex === index ? (
-                    <ChevronUp className="h-5 w-5 text-muted-foreground" />
-                  ) : (
-                    <ChevronDown className="h-5 w-5 text-muted-foreground" />
-                  )}
-                </div>
-              </button>
-              
-              {openIndex === index && (
-                <div className="px-6 pb-4">
-                  <div className="pt-2 border-t border-border/50">
-                    <p className="text-muted-foreground leading-relaxed">
-                      {faq.answer}
-                    </p>
-                  </div>
-                </div>
-              )}
-            </div>
-          ))}
+        {/* Right Accordion List */}
+        <div className="flex-[2_1_480px] min-w-[280px] flex flex-col border-t border-[#D9E2DC]">
+          {faqData.map((item, idx) => {
+            const isOpen = openIndex === idx;
+            return (
+              <div key={idx} className="border-b border-[#D9E2DC]">
+                <button
+                  type="button"
+                  onClick={() => toggle(idx)}
+                  aria-expanded={isOpen}
+                  className="w-full flex items-center justify-between gap-5 py-5.5 bg-transparent border-0 cursor-pointer text-left font-['Figtree',sans-serif] text-base sm:text-lg font-semibold text-[#0C1A14] hover:text-[#087F4C] transition-colors"
+                >
+                  <span>{item.q}</span>
+                  <svg
+                    width="20"
+                    height="20"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="#087F4C"
+                    strokeWidth="2.4"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    className={`shrink-0 transition-transform duration-200 ${isOpen ? "rotate-180" : ""
+                      }`}
+                    aria-hidden="true"
+                  >
+                    <path d="M6 9l6 6 6-6" />
+                  </svg>
+                </button>
+                {isOpen && (
+                  <p className="m-0 pr-6 sm:pr-10 pb-6 text-base leading-relaxed text-[#4A5D54]">
+                    {item.a}
+                  </p>
+                )}
+              </div>
+            );
+          })}
         </div>
-
-        {/* Contact Support CTA
-        <div className="mt-16 text-center">
-          <div className="bg-muted/30 rounded-2xl p-8">
-            <h3 className="text-xl font-bold text-foreground mb-2">
-              Still have questions?
-            </h3>
-            <p className="text-muted-foreground mb-6">
-              Our support team is here to help you 24/7
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <button className="px-6 py-2 bg-primary text-primary-foreground rounded-lg hover:bg-primary/90 transition-colors">
-                Start Live Chat
-              </button>
-              <button className="px-6 py-2 border border-border text-foreground rounded-lg hover:bg-muted/50 transition-colors">
-                Browse Help Center
-              </button>
-            </div>
-          </div>
-        </div> */}
       </div>
     </section>
   );

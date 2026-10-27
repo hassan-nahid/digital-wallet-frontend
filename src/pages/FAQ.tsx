@@ -1,215 +1,201 @@
-
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
-import { Card, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Shield, Wallet, CreditCard, HelpCircle, FileText, Phone } from "lucide-react"
-import { Button } from "@/components/ui/button"
-import { Link } from "react-router"
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
+import { Shield, Wallet, CreditCard, HelpCircle, Phone, ArrowRight } from "lucide-react";
+import { Link } from "react-router";
 
 const faqCategories = [
   {
     category: "Getting Started",
-    icon: <HelpCircle className="w-5 h-5" />,
+    icon: <HelpCircle className="w-5 h-5 text-[#3DE8A0]" />,
     questions: [
       {
         question: "What is WalletX?",
-        answer: "WalletX is a secure, modern digital wallet platform that enables you to send, receive, and manage money quickly and safely. With support for multiple currencies, instant transfers, and bank-level security, WalletX makes digital transactions simple and accessible for everyone.",
+        answer: "WalletX is a transparent digital wallet platform built for personal users, cash agents, and administrators. It lets you send, receive, and cash out money with zero hidden fees—every cost is clearly displayed before you confirm any transaction.",
       },
       {
         question: "How do I create an account?",
-        answer: "Creating an account is simple! Click the 'Register' button, provide your email, phone number, and create a password. You'll need to verify your email and phone number, then complete a quick identity verification for security purposes. The entire process takes less than 5 minutes.",
+        answer: "Click 'Create account', provide your name, email, phone number, and password, and choose whether you want a Personal or Agent wallet. You're ready to start in under 2 minutes.",
       },
       {
-        question: "Is WalletX free to use?",
-        answer: "Yes! Creating an account and using WalletX for basic transactions is completely free. We charge small transaction fees (starting at 0.5%) for certain services like withdrawals and international transfers. There are no monthly fees, hidden charges, or subscription costs.",
+        question: "Is WalletX free to register?",
+        answer: "Yes! Account registration is 100% free with no monthly fees, no subscription tiers, and no hidden account maintenance charges.",
       },
       {
-        question: "What devices can I use WalletX on?",
-        answer: "WalletX works on all modern devices including smartphones, tablets, and desktop computers. Our platform is fully responsive and optimized for both iOS and Android devices, as well as all major web browsers.",
+        question: "What devices are supported?",
+        answer: "WalletX runs seamlessly on modern smartphones, tablets, and desktop browsers. It features a fully responsive layout with touch-friendly controls.",
+      },
+    ]
+  },
+  {
+    category: "Fees & Pricing",
+    icon: <Wallet className="w-5 h-5 text-[#3DE8A0]" />,
+    questions: [
+      {
+        question: "What are the exact fees for sending money?",
+        answer: "Sending money under ৳1,000 is completely free. From ৳1,000 to ৳20,000, there is a flat ৳10 platform fee. Above ৳20,000, there is a flat ৳15 fee. There are no surprise percentage add-ons.",
+      },
+      {
+        question: "How much does cashing out cost?",
+        answer: "Cashing out through an authorized agent costs ৳10 per ৳1,000 (1%). This fee is split instantly in the same second: the agent earns ৳4 commission, and admin keeps ৳6 profit.",
+      },
+      {
+        question: "Are there fees for adding money?",
+        answer: "Adding money from your bank account or through an agent is 100% free for users. You receive the exact amount you deposit.",
+      },
+      {
+        question: "What are the transaction limits?",
+        answer: "Users can add up to ৳50,000 and cash out up to ৳50,000 per transaction. Agents can handle cash in up to ৳100,000 per transaction, and administrators can withdraw up to ৳100,000 fee-free.",
       },
     ]
   },
   {
     category: "Account & Security",
-    icon: <Shield className="w-5 h-5" />,
+    icon: <Shield className="w-5 h-5 text-[#3DE8A0]" />,
     questions: [
       {
-        question: "How secure is WalletX?",
-        answer: "Security is our top priority. We use bank-level 256-bit SSL encryption, multi-factor authentication, and advanced fraud detection systems. Your data is protected with end-to-end encryption, and we never store sensitive information like passwords in plain text. We comply with international security standards and regulations.",
+        question: "How is my money protected?",
+        answer: "WalletX uses bank-grade AES-256 encryption, multi-factor authentication, and biometric sign-in (fingerprint and Face ID). All transactions are logged on an immutable audit ledger.",
       },
       {
-        question: "What should I do if I forget my password?",
-        answer: "Click on the 'Forgot Password' link on the login page. Enter your registered email address, and we'll send you a secure link to reset your password. Follow the instructions in the email to create a new password. For security reasons, the reset link expires after 1 hour.",
+        question: "What happens if I lose my phone?",
+        answer: "Your funds reside securely in your cloud account, not on your physical device. Simply contact support or sign in from another device to secure your wallet.",
       },
       {
-        question: "Can I change my email or phone number?",
-        answer: "Yes, you can update your email or phone number from your account settings. For security purposes, you'll need to verify the new email/phone number and may need to re-verify your identity.",
-      },
-      {
-        question: "How do I enable two-factor authentication?",
-        answer: "Go to Security Settings in your account dashboard, click 'Enable 2FA', and follow the setup instructions. You can use SMS codes or authenticator apps like Google Authenticator or Authy for additional security.",
-      },
-      {
-        question: "Are my transactions private?",
-        answer: "Yes, all your transactions are private and protected. We use advanced encryption and never share your personal or financial data with third parties without your explicit consent. Your transaction history is only visible to you.",
+        question: "Can someone access my account without my PIN?",
+        answer: "No. Every sensitive transaction requires your security credentials, and biometric checks or 2FA codes are required on unfamiliar devices.",
       },
     ]
   },
   {
-    category: "Transactions & Payments",
-    icon: <Wallet className="w-5 h-5" />,
+    category: "Agent Services",
+    icon: <CreditCard className="w-5 h-5 text-[#3DE8A0]" />,
     questions: [
       {
-        question: "How do I send money?",
-        answer: "To send money, log in to your account, click 'Send Money', enter the recipient's email or wallet ID, specify the amount, and confirm. The money will be transferred instantly. You can also add a note or reference for your records.",
+        question: "How do I become a WalletX agent?",
+        answer: "Select 'Become an agent' when registering or contact support. Agents receive an agent dashboard, float management tools, and priority verification.",
       },
       {
-        question: "What are the transaction limits?",
-        answer: "Daily transaction limits vary by account type and verification level. Basic accounts can send up to $5,000 per day, while verified business accounts have limits up to $50,000 per day. You can view your specific limits in your account settings.",
+        question: "How much can agents earn?",
+        answer: "Agents earn a guaranteed ৳4 commission for every ৳1,000 cash-out they process. The commission is deposited instantly into the agent's wallet upon transaction confirmation.",
       },
       {
-        question: "How long do transactions take?",
-        answer: "WalletX to WalletX transfers are instant. Bank withdrawals typically take 1-5 minutes, though some banks may take up to 24 hours. International transfers usually complete within 1-3 business days depending on the destination country.",
-      },
-      {
-        question: "Can I cancel a transaction?",
-        answer: "Once a transaction is completed, it cannot be canceled. However, if you sent money to the wrong person, you can request them to send it back. For pending transactions, you may be able to cancel within a short time window before processing completes.",
-      },
-      {
-        question: "What currencies does WalletX support?",
-        answer: "WalletX supports 50+ major currencies including USD, EUR, GBP, BDT, INR, and many more. You can hold multiple currencies in your wallet and convert between them at competitive exchange rates.",
-      },
-    ]
-  },
-  {
-    category: "Adding & Withdrawing Money",
-    icon: <CreditCard className="w-5 h-5" />,
-    questions: [
-      {
-        question: "How do I add money to my WalletX account?",
-        answer: "You can add money using credit/debit cards, bank transfers, mobile banking, or through our agent network. Go to 'Add Money' in your dashboard, select your preferred method, enter the amount, and follow the instructions. Most deposits are instant.",
-      },
-      {
-        question: "Can I withdraw funds to my bank?",
-        answer: "Yes! You can easily withdraw your WalletX balance to any supported bank account. Click 'Withdraw', select your bank account, enter the amount, and confirm. Most withdrawals process instantly, some may take 1-5 minutes.",
-      },
-      {
-        question: "What are the withdrawal fees?",
-        answer: "Withdrawal fees vary by method. Bank transfers have a 1.5% fee, agent withdrawals have a 2% fee, and ATM withdrawals may have additional fees from the ATM provider. The exact fee is always shown before you confirm the withdrawal.",
-      },
-      {
-        question: "Is there a minimum deposit amount?",
-        answer: "The minimum deposit amount is $10 (or equivalent in other currencies). There is no maximum deposit limit, though large deposits may require additional verification for security purposes.",
+        question: "How do agents top up their cash float?",
+        answer: "Agents can receive cash in top-ups from admin up to ৳100,000 per transaction with real-time balance updates.",
       },
     ]
   },
   {
     category: "Support & Help",
-    icon: <Phone className="w-5 h-5" />,
+    icon: <Phone className="w-5 h-5 text-[#3DE8A0]" />,
     questions: [
       {
-        question: "How do I contact support?",
-        answer: "You can reach our 24/7 support team through live chat (available in your dashboard), email at hassan.nahid.dev@gmail.com, or by calling +8801780365440. We also have a comprehensive help center with articles and guides.",
+        question: "How can I contact customer support?",
+        answer: "Our support team is available 24/7. Email us at hassan.nahid.dev@gmail.com, call +880 1780-365440, or use the live chat in the portal.",
       },
       {
-        question: "Can I use WalletX internationally?",
-        answer: "Absolutely! WalletX is available in 50+ countries and supports international transfers. You can send and receive money globally with competitive exchange rates and transparent fees.",
-      },
-      {
-        question: "How do I update my profile information?",
-        answer: "Go to your account settings, click 'Edit Profile', and update your information. Changes to sensitive information like email or phone number may require verification for security.",
-      },
-      {
-        question: "What should I do if I notice suspicious activity?",
-        answer: "Immediately contact our support team and change your password. We have 24/7 fraud monitoring, but if you notice anything unusual, report it right away. We'll investigate and take appropriate action to protect your account.",
+        question: "What is the average response time?",
+        answer: "Live chat inquiries are answered within minutes. Email support tickets are typically resolved in under 2 hours.",
       },
     ]
   },
-]
+];
 
-const FAQ = () => {
+const FAQPage = () => {
   return (
-    <main className="min-h-[calc(100vh-64px)] bg-background">
-      <section className="py-24 bg-gradient-to-br from-primary via-primary/90 to-primary/80 text-white text-center">
-        <div className="container mx-auto max-w-4xl px-4">
-          <h1 className="text-5xl md:text-6xl font-bold mb-6">Frequently Asked Questions</h1>
-          <p className="text-xl md:text-2xl mb-8 max-w-3xl mx-auto leading-relaxed">Find answers to the most common questions about WalletX.</p>
-          <p className="text-lg max-w-2xl mx-auto">Can't find what you're looking for? Our support team is available 24/7 to help you.</p>
+    <main className="min-h-screen bg-[#F3F6F4] text-[#0C1A14]">
+      {/* Header */}
+      <section className="bg-[#0B2318] text-white py-20 lg:py-24 hero-grid-pattern border-b border-white/10 text-center">
+        <div className="max-w-[1200px] mx-auto px-4 sm:px-6 flex flex-col items-center gap-5">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 border border-[#3DE8A0]/40 rounded-full font-['JetBrains_Mono',monospace] text-xs font-bold tracking-widest uppercase text-[#3DE8A0] bg-[#3DE8A0]/5">
+            Knowledge Base
+          </div>
+          <h1 className="m-0 font-['Bricolage_Grotesque',sans-serif] font-extrabold text-4xl sm:text-5xl lg:text-6xl tracking-tight text-white max-w-3xl">
+            Frequently Asked Questions
+          </h1>
+          <p className="m-0 text-lg sm:text-xl text-[#B7CCC0] max-w-2xl leading-relaxed">
+            Everything you need to know about fees, cash-out rates, agent commissions, and wallet security.
+          </p>
         </div>
       </section>
 
-      {/* Quick Links */}
-      <section className="py-12 bg-primary/5">
-        <div className="container mx-auto max-w-6xl px-4">
-          <h2 className="text-2xl font-bold text-center mb-8">Browse by Category</h2>
-          <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
+      {/* Category Pills */}
+      <section className="py-8 bg-white border-b border-[#D9E2DC] sticky top-[72px] z-30 shadow-sm">
+        <div className="max-w-[1200px] mx-auto px-4 sm:px-6 overflow-x-auto">
+          <div className="flex items-center justify-center gap-3 min-w-max">
             {faqCategories.map((cat, idx) => (
               <a
                 key={idx}
-                href={`#category-${idx}`}
-                className="flex flex-col items-center p-4 bg-background rounded-lg border hover:border-primary hover:shadow-md transition-all text-center"
+                href={`#cat-${idx}`}
+                className="px-4 py-2 rounded-xl bg-[#F3F6F4] border border-[#D9E2DC] text-xs sm:text-sm font-semibold text-[#0C1A14] hover:border-[#12B76A] hover:text-[#087F4C] transition-all flex items-center gap-2"
               >
-                <div className="w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center mb-2 text-primary">
-                  {cat.icon}
-                </div>
-                <span className="text-sm font-semibold">{cat.category}</span>
+                <span>{cat.category}</span>
               </a>
             ))}
           </div>
         </div>
       </section>
 
-      {/* FAQ Categories */}
-      {faqCategories.map((category, catIdx) => (
-        <section key={catIdx} id={`category-${catIdx}`} className="py-16">
-          <div className="container mx-auto max-w-4xl px-4">
-            <div className="flex items-center gap-3 mb-8">
-              <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center text-primary">
-                {category.icon}
+      {/* FAQ Accordion Groups */}
+      <section className="py-16 bg-[#F3F6F4]">
+        <div className="max-w-[900px] mx-auto px-4 sm:px-6 flex flex-col gap-14">
+          {faqCategories.map((cat, idx) => (
+            <div
+              key={idx}
+              id={`cat-${idx}`}
+              className="scroll-mt-36 flex flex-col gap-5 p-7 sm:p-9 bg-white border border-[#D9E2DC] rounded-3xl shadow-sm"
+            >
+              <div className="flex items-center gap-3 pb-4 border-b border-[#D9E2DC]">
+                <div className="w-10 h-10 rounded-xl bg-[#0B2318] flex items-center justify-center shrink-0">
+                  {cat.icon}
+                </div>
+                <h2 className="font-['Bricolage_Grotesque',sans-serif] font-bold text-2xl text-[#0C1A14] m-0">
+                  {cat.category}
+                </h2>
               </div>
-              <h2 className="text-3xl font-bold">{category.category}</h2>
-            </div>
-            <Accordion type="single" collapsible className="w-full rounded-xl bg-muted/40 border shadow-lg divide-y divide-muted px-6">
-              {category.questions.map((faq, idx) => (
-                <AccordionItem value={`faq-${catIdx}-${idx}`} key={idx}>
-                  <AccordionTrigger className="text-lg font-semibold py-5">{faq.question}</AccordionTrigger>
-                  <AccordionContent className="text-muted-foreground text-base leading-relaxed pb-5">{faq.answer}</AccordionContent>
-                </AccordionItem>
-              ))}
-            </Accordion>
-          </div>
-        </section>
-      ))}
 
-      {/* Still Have Questions */}
-      <section className="py-20 bg-gradient-to-br from-primary/10 to-background">
-        <div className="container mx-auto max-w-4xl px-4 text-center">
-          <h2 className="text-4xl font-bold mb-6">Still Have Questions?</h2>
-          <p className="text-muted-foreground text-lg mb-8 max-w-2xl mx-auto">
-            Can't find the answer you're looking for? Don't worry, our support team is here to help you 24/7.
+              <Accordion type="single" collapsible className="w-full">
+                {cat.questions.map((q, qIdx) => (
+                  <AccordionItem key={qIdx} value={`item-${idx}-${qIdx}`} className="border-b border-[#E4EBE7] last:border-b-0">
+                    <AccordionTrigger className="text-left font-['Figtree',sans-serif] font-semibold text-base sm:text-lg text-[#0C1A14] hover:text-[#087F4C] py-4">
+                      {q.question}
+                    </AccordionTrigger>
+                    <AccordionContent className="text-[#4A5D54] text-base leading-relaxed pb-4">
+                      {q.answer}
+                    </AccordionContent>
+                  </AccordionItem>
+                ))}
+              </Accordion>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* Still Have Questions CTA */}
+      <section className="py-16 bg-white border-t border-[#D9E2DC] text-center">
+        <div className="max-w-[800px] mx-auto px-4 flex flex-col items-center gap-4">
+          <h2 className="font-['Bricolage_Grotesque',sans-serif] font-extrabold text-3xl text-[#0C1A14] m-0">
+            Still have questions?
+          </h2>
+          <p className="text-base text-[#4A5D54] m-0">
+            Our team is always available to help you with your wallet account or agent registration.
           </p>
-          <div className="grid md:grid-cols-2 gap-6 max-w-2xl mx-auto mb-8">
-            <Card>
-              <CardHeader>
-                <Phone className="w-8 h-8 text-primary mx-auto mb-2" />
-                <CardTitle>Call Us</CardTitle>
-                <CardDescription>+8801780365440</CardDescription>
-              </CardHeader>
-            </Card>
-            <Card>
-              <CardHeader>
-                <FileText className="w-8 h-8 text-primary mx-auto mb-2" />
-                <CardTitle>Email Us</CardTitle>
-                <CardDescription>hassan.nahid.dev@gmail.com</CardDescription>
-              </CardHeader>
-            </Card>
+          <div className="flex gap-3 pt-2">
+            <Link
+              to="/contact"
+              className="btn px-6 py-3 rounded-xl font-bold text-sm text-[#04170E] bg-[#12B76A] hover:bg-[#0fa968] transition-all"
+            >
+              Contact Support
+            </Link>
+            <Link
+              to="/register"
+              className="btn px-6 py-3 rounded-xl font-bold text-sm text-[#0C1A14] border border-[#D9E2DC] hover:bg-[#F3F6F4] transition-all"
+            >
+              Create Account <ArrowRight className="inline w-4 h-4 ml-1" />
+            </Link>
           </div>
-          <Link to="/contact">
-            <Button size="lg" className="px-10 py-6 text-lg cursor-pointer font-semibold">Contact Support Team</Button>
-          </Link>
         </div>
       </section>
     </main>
-  )
-}
+  );
+};
 
-export default FAQ
+export default FAQPage;

@@ -1,197 +1,238 @@
-
-import { Zap, ShieldCheck, Users, Wallet, Send, Globe, PhoneCall, ArrowRight, CheckCircle, TrendingUp, Clock, CreditCard, Smartphone } from "lucide-react"
-import { Button } from "@/components/ui/button"
-import { Link } from "react-router"
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+import { Zap, ShieldCheck, Users, Wallet, Send, Globe, PhoneCall, ArrowRight, CheckCircle, TrendingUp, Clock, CreditCard, Smartphone } from "lucide-react";
+import { Link } from "react-router";
 
 const features = [
-    {
-        icon: <Zap className="w-10 h-10 text-primary mb-3" />, 
-        title: "Instant Transfers", 
-        desc: "Send and receive money instantly, anytime, anywhere. No delays, no waiting periods. Your transactions are processed in real-time with our optimized infrastructure."
-    },
-    {
-        icon: <ShieldCheck className="w-10 h-10 text-primary mb-3" />, 
-        title: "Bank-Level Security", 
-        desc: "Your funds and data are protected with end-to-end encryption, multi-factor authentication, and industry-leading security protocols that exceed banking standards."
-    },
-    {
-        icon: <Wallet className="w-10 h-10 text-primary mb-3" />, 
-        title: "Multi-Currency Support", 
-        desc: "Manage and convert multiple currencies with ease. Support for 50+ currencies with real-time exchange rates and transparent conversion fees."
-    },
-    {
-        icon: <Send className="w-10 h-10 text-primary mb-3" />, 
-        title: "Easy Withdrawals", 
-        desc: "Withdraw to your bank account, mobile wallet, or through our extensive agent network. Multiple withdrawal methods for your convenience."
-    },
-    {
-        icon: <Globe className="w-10 h-10 text-primary mb-3" />, 
-        title: "Global Access", 
-        desc: "Use WalletX in 50+ countries and growing. Our platform is designed for international users with localized support and compliance."
-    },
-    {
-        icon: <PhoneCall className="w-10 h-10 text-primary mb-3" />, 
-        title: "24/7 Support", 
-        desc: "Get help anytime from our dedicated support team. Live chat, email, and phone support available around the clock."
-    },
-    {
-        icon: <Users className="w-10 h-10 text-primary mb-3" />, 
-        title: "For Everyone", 
-        desc: "Perfect for individuals, freelancers, and businesses. Flexible features that scale with your needs."
-    },
-    {
-        icon: <Clock className="w-10 h-10 text-primary mb-3" />, 
-        title: "Transaction History", 
-        desc: "Complete transaction history with advanced filtering, search capabilities, and downloadable statements for easy record-keeping."
-    },
-    {
-        icon: <CreditCard className="w-10 h-10 text-primary mb-3" />, 
-        title: "Multiple Payment Methods", 
-        desc: "Add money using credit cards, debit cards, bank transfers, or mobile banking. We support all major payment providers."
-    },
-    {
-        icon: <Smartphone className="w-10 h-10 text-primary mb-3" />, 
-        title: "Mobile Ready", 
-        desc: "Access your wallet on any device. Fully responsive design optimized for mobile, tablet, and desktop experiences."
-    },
-]
+  {
+    icon: <Zap className="w-6 h-6 text-[#3DE8A0]" />,
+    title: "Instant Transfers",
+    desc: "Send and receive money instantly, anytime, anywhere. Your transactions are settled in real-time with zero waiting."
+  },
+  {
+    icon: <ShieldCheck className="w-6 h-6 text-[#3DE8A0]" />,
+    title: "Bank-Grade Security",
+    desc: "Your funds and identity are guarded by AES-256 encryption, multi-factor authentication, and audited fraud detection."
+  },
+  {
+    icon: <Wallet className="w-6 h-6 text-[#3DE8A0]" />,
+    title: "Multi-Currency Ready",
+    desc: "Seamlessly hold, send, and manage taka and global currencies with transparent real-time conversion rates."
+  },
+  {
+    icon: <Send className="w-6 h-6 text-[#3DE8A0]" />,
+    title: "Easy Cash Out",
+    desc: "Withdraw cash on demand through our nationwide agent network at an honest flat rate of ৳10 per ৳1,000."
+  },
+  {
+    icon: <Globe className="w-6 h-6 text-[#3DE8A0]" />,
+    title: "Everywhere in Bangladesh",
+    desc: "Accessible from all 64 districts. Built for individuals, merchants, and local cash agents."
+  },
+  {
+    icon: <PhoneCall className="w-6 h-6 text-[#3DE8A0]" />,
+    title: "24/7 Dedicated Support",
+    desc: "Round-the-clock help from our support team via live chat and email at hassan.nahid.dev@gmail.com."
+  },
+  {
+    icon: <Users className="w-6 h-6 text-[#3DE8A0]" />,
+    title: "Roles for Everyone",
+    desc: "Dedicated workspaces for personal users, earning tools for cash agents, and oversight for admins."
+  },
+  {
+    icon: <Clock className="w-6 h-6 text-[#3DE8A0]" />,
+    title: "Audited Ledger History",
+    desc: "Every transaction fee, commission, and balance movement is permanently recorded with full transparency."
+  },
+  {
+    icon: <CreditCard className="w-6 h-6 text-[#3DE8A0]" />,
+    title: "Bank & Card Integration",
+    desc: "Add money directly from linked bank accounts or debit cards up to ৳50,000 per transaction."
+  },
+  {
+    icon: <Smartphone className="w-6 h-6 text-[#3DE8A0]" />,
+    title: "Mobile Optimized",
+    desc: "Fully responsive web wallet that feels like a native mobile app on iOS and Android devices."
+  },
+];
 
-const Features = () => {
-    return (
-        <main className="min-h-[calc(100vh-64px)] bg-background">
-            <section className="py-24 bg-gradient-to-br from-primary via-primary/90 to-primary/80 text-white text-center">
-                <div className="container mx-auto max-w-4xl px-4">
-                    <h1 className="text-5xl md:text-6xl font-bold mb-6">Powerful Features</h1>
-                    <p className="text-xl md:text-2xl mb-8 max-w-3xl mx-auto leading-relaxed">
-                        Everything you need for fast, secure, and global digital transactions. Experience the future of digital payments.
-                    </p>
-                    <p className="text-lg max-w-2xl mx-auto">
-                        Discover how WalletX combines cutting-edge technology with user-friendly design to deliver the ultimate digital wallet experience.
-                    </p>
+const FeaturesPage = () => {
+  return (
+    <main className="min-h-screen bg-[#F3F6F4] text-[#0C1A14]">
+      {/* Header */}
+      <section className="bg-[#0B2318] text-white py-20 lg:py-24 hero-grid-pattern border-b border-white/10 text-center">
+        <div className="max-w-[1200px] mx-auto px-4 sm:px-6 flex flex-col items-center gap-5">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 border border-[#3DE8A0]/40 rounded-full font-['JetBrains_Mono',monospace] text-xs font-bold tracking-widest uppercase text-[#3DE8A0] bg-[#3DE8A0]/5">
+            Platform Capabilities
+          </div>
+          <h1 className="m-0 font-['Bricolage_Grotesque',sans-serif] font-extrabold text-4xl sm:text-5xl lg:text-6xl tracking-tight text-white max-w-3xl">
+            Everything you need for honest digital transactions.
+          </h1>
+          <p className="m-0 text-lg sm:text-xl text-[#B7CCC0] max-w-2xl leading-relaxed">
+            Discover how WalletX combines cutting-edge financial architecture with transparent upfront fee calculations.
+          </p>
+        </div>
+      </section>
+
+      {/* Main Features Grid */}
+      <section className="py-20 bg-white border-b border-[#D9E2DC]">
+        <div className="max-w-[1200px] mx-auto px-4 sm:px-6 flex flex-col gap-12">
+          <div className="text-center max-w-2xl mx-auto flex flex-col gap-2">
+            <span className="font-['JetBrains_Mono',monospace] text-xs font-bold tracking-widest uppercase text-[#087F4C]">
+              Core Features
+            </span>
+            <h2 className="m-0 font-['Bricolage_Grotesque',sans-serif] font-extrabold text-3xl sm:text-4xl text-[#0C1A14]">
+              Built with precision for everyday life
+            </h2>
+          </div>
+
+          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            {features.map((f, idx) => (
+              <div
+                key={idx}
+                className="flex flex-col gap-3 p-7 rounded-3xl bg-[#F3F6F4] border border-[#E4EBE7] shadow-sm hover:border-[#12B76A]/40 transition-colors"
+              >
+                <div className="w-12 h-12 rounded-xl bg-[#0B2318] flex items-center justify-center shrink-0 mb-1">
+                  {f.icon}
                 </div>
-            </section>
+                <h3 className="font-['Bricolage_Grotesque',sans-serif] font-bold text-xl text-[#0C1A14] m-0">
+                  {f.title}
+                </h3>
+                <p className="text-sm leading-relaxed text-[#4A5D54] m-0">
+                  {f.desc}
+                </p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
 
-            {/* Main Features Grid */}
-            <section className="py-20">
-                <div className="container mx-auto max-w-7xl px-4">
-                    <h2 className="text-4xl font-bold text-center mb-4">Core Features</h2>
-                    <p className="text-center text-muted-foreground text-lg mb-12 max-w-3xl mx-auto">
-                        Built with you in mind, our features are designed to make your financial life simpler and more secure
-                    </p>
-                    <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
-                        {features.map((f, idx) => (
-                            <div key={idx} className="flex flex-col items-center text-center p-8 bg-gradient-to-br from-muted/40 to-muted/20 rounded-xl shadow-sm border hover:shadow-lg hover:border-primary/30 transition-all">
-                                <div className="w-20 h-20 bg-primary/10 rounded-full flex items-center justify-center mb-4">
-                                    {f.icon}
-                                </div>
-                                <h3 className="font-semibold text-xl mb-3">{f.title}</h3>
-                                <p className="text-muted-foreground text-base leading-relaxed">{f.desc}</p>
-                            </div>
-                        ))}
-                    </div>
+      {/* 4-Step Process */}
+      <section className="py-20 bg-[#F3F6F4]">
+        <div className="max-w-[1200px] mx-auto px-4 sm:px-6 flex flex-col gap-12">
+          <div className="text-center max-w-2xl mx-auto flex flex-col gap-2">
+            <span className="font-['JetBrains_Mono',monospace] text-xs font-bold tracking-widest uppercase text-[#087F4C]">
+              Workflow
+            </span>
+            <h2 className="m-0 font-['Bricolage_Grotesque',sans-serif] font-extrabold text-3xl sm:text-4xl text-[#0C1A14]">
+              Start transacting in minutes
+            </h2>
+          </div>
+
+          <div className="grid md:grid-cols-4 gap-6">
+            {[
+              { step: "01", title: "Sign Up", desc: "Create your free wallet account in seconds." },
+              { step: "02", title: "Verify", desc: "Quick verification for identity and safety." },
+              { step: "03", title: "Add Money", desc: "Top up via bank, card, or agent." },
+              { step: "04", title: "Transact", desc: "Send, receive, and cash out with zero surprises." },
+            ].map((item, idx) => (
+              <div key={idx} className="relative p-6 rounded-2xl bg-white border border-[#D9E2DC] flex flex-col gap-3 shadow-sm">
+                <span className="w-10 h-10 rounded-xl bg-[#0B2318] text-[#3DE8A0] font-mono font-bold text-sm flex items-center justify-center">
+                  {item.step}
+                </span>
+                <h3 className="font-['Bricolage_Grotesque',sans-serif] font-bold text-xl text-[#0C1A14] m-0">
+                  {item.title}
+                </h3>
+                <p className="text-sm text-[#4A5D54] leading-relaxed m-0">{item.desc}</p>
+                {idx < 3 && (
+                  <ArrowRight className="hidden md:block absolute top-6 right-4 w-5 h-5 text-[#D9E2DC]" />
+                )}
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Why Users Love WalletX */}
+      <section className="py-20 bg-white border-t border-b border-[#D9E2DC]">
+        <div className="max-w-[1200px] mx-auto px-4 sm:px-6 flex flex-col gap-10">
+          <div className="text-center max-w-2xl mx-auto flex flex-col gap-2">
+            <span className="font-['JetBrains_Mono',monospace] text-xs font-bold tracking-widest uppercase text-[#087F4C]">
+              Real Benefits
+            </span>
+            <h2 className="m-0 font-['Bricolage_Grotesque',sans-serif] font-extrabold text-3xl sm:text-4xl text-[#0C1A14]">
+              Why users choose WalletX
+            </h2>
+          </div>
+
+          <div className="grid md:grid-cols-2 gap-6">
+            {[
+              { icon: <TrendingUp className="w-6 h-6 text-[#087F4C]" />, title: "Low, Honest Fees", desc: "Free sends under ৳1,000, ৳10 up to ৳20,000, and flat ৳15 above. No hidden percentage markups." },
+              { icon: <Clock className="w-6 h-6 text-[#087F4C]" />, title: "Instant Settlement", desc: "Direct wallet-to-wallet transactions finish in real time without batch delays." },
+              { icon: <ShieldCheck className="w-6 h-6 text-[#087F4C]" />, title: "Bank-Grade Protection", desc: "End-to-end encryption, multi-factor auth, and intelligent transaction anomaly detection." },
+              { icon: <Users className="w-6 h-6 text-[#087F4C]" />, title: "Agent Empowerment", desc: "Agents receive a dedicated ৳4 per ৳1,000 commission on cash-out services." },
+            ].map((item, idx) => (
+              <div key={idx} className="p-7 rounded-2xl bg-[#F3F6F4] border border-[#E4EBE7] flex items-start gap-4">
+                <div className="w-12 h-12 rounded-xl bg-[#E1EBE5] flex items-center justify-center shrink-0">
+                  {item.icon}
                 </div>
-            </section>
-
-            {/* How It Works */}
-            <section className="py-20 bg-primary/5">
-                <div className="container mx-auto max-w-6xl px-4">
-                    <h2 className="text-4xl font-bold text-center mb-4">How It Works</h2>
-                    <p className="text-center text-muted-foreground text-lg mb-12">Get started in minutes with our simple process</p>
-                    <div className="grid md:grid-cols-4 gap-8">
-                        {[
-                            { step: "1", title: "Sign Up", desc: "Create your free account in under 2 minutes" },
-                            { step: "2", title: "Verify", desc: "Quick verification for security and compliance" },
-                            { step: "3", title: "Add Money", desc: "Fund your wallet using your preferred method" },
-                            { step: "4", title: "Start Using", desc: "Send, receive, and manage your money instantly" },
-                        ].map((item, idx) => (
-                            <div key={idx} className="relative text-center">
-                                <div className="mx-auto w-16 h-16 rounded-full bg-primary text-primary-foreground flex items-center justify-center text-2xl font-bold mb-4">
-                                    {item.step}
-                                </div>
-                                <h3 className="font-semibold text-xl mb-2">{item.title}</h3>
-                                <p className="text-muted-foreground">{item.desc}</p>
-                                {idx < 3 && (
-                                    <ArrowRight className="hidden md:block absolute top-8 -right-4 w-6 h-6 text-primary" />
-                                )}
-                            </div>
-                        ))}
-                    </div>
+                <div>
+                  <h3 className="font-['Bricolage_Grotesque',sans-serif] font-bold text-xl text-[#0C1A14] mb-1">
+                    {item.title}
+                  </h3>
+                  <p className="text-sm text-[#4A5D54] leading-relaxed m-0">{item.desc}</p>
                 </div>
-            </section>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
 
-            {/* Why Choose Us */}
-            <section className="py-20">
-                <div className="container mx-auto max-w-6xl px-4">
-                    <h2 className="text-4xl font-bold text-center mb-4">Why Users Love WalletX</h2>
-                    <p className="text-center text-muted-foreground text-lg mb-12">Real benefits that make a difference</p>
-                    <div className="grid md:grid-cols-2 gap-8">
-                        {[
-                            { icon: <TrendingUp className="w-6 h-6" />, title: "Low Fees", desc: "Competitive transaction fees that save you money. No hidden charges or surprise costs." },
-                            { icon: <Clock className="w-6 h-6" />, title: "Instant Processing", desc: "Real-time transaction processing means your money moves when you do." },
-                            { icon: <ShieldCheck className="w-6 h-6" />, title: "100% Secure", desc: "Bank-grade security with end-to-end encryption and fraud protection." },
-                            { icon: <Users className="w-6 h-6" />, title: "User-Friendly", desc: "Intuitive interface designed for everyone, from beginners to experts." },
-                        ].map((item, idx) => (
-                            <Card key={idx} className="hover:shadow-lg transition-shadow">
-                                <CardHeader>
-                                    <div className="flex items-center gap-3">
-                                        <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center text-primary">
-                                            {item.icon}
-                                        </div>
-                                        <CardTitle className="text-xl">{item.title}</CardTitle>
-                                    </div>
-                                </CardHeader>
-                                <CardContent>
-                                    <p className="text-muted-foreground">{item.desc}</p>
-                                </CardContent>
-                            </Card>
-                        ))}
-                    </div>
-                </div>
-            </section>
+      {/* Target Audiences */}
+      <section className="py-20 bg-[#F3F6F4]">
+        <div className="max-w-[1200px] mx-auto px-4 sm:px-6 flex flex-col gap-10">
+          <div className="text-center max-w-2xl mx-auto flex flex-col gap-2">
+            <span className="font-['JetBrains_Mono',monospace] text-xs font-bold tracking-widest uppercase text-[#087F4C]">
+              Audience
+            </span>
+            <h2 className="m-0 font-['Bricolage_Grotesque',sans-serif] font-extrabold text-3xl sm:text-4xl text-[#0C1A14]">
+              Perfect for everyone
+            </h2>
+          </div>
 
-            {/* Use Cases */}
-            <section className="py-20 bg-muted/50">
-                <div className="container mx-auto max-w-6xl px-4">
-                    <h2 className="text-4xl font-bold text-center mb-4">Perfect For Everyone</h2>
-                    <p className="text-center text-muted-foreground text-lg mb-12">Whatever your needs, WalletX has you covered</p>
-                    <div className="grid md:grid-cols-3 gap-8">
-                        {[
-                            { emoji: "👤", title: "Individuals", items: ["Personal money management", "Pay bills online", "Split expenses with friends", "Track spending"] },
-                            { emoji: "💼", title: "Freelancers", items: ["Receive client payments", "Invoice management", "Multi-currency support", "Instant withdrawals"] },
-                            { emoji: "🏢", title: "Businesses", items: ["Process payments", "Pay vendors & suppliers", "Payroll management", "Financial reporting"] },
-                        ].map((useCase, idx) => (
-                            <Card key={idx}>
-                                <CardHeader>
-                                    <div className="text-5xl mb-3 text-center">{useCase.emoji}</div>
-                                    <CardTitle className="text-center text-2xl">{useCase.title}</CardTitle>
-                                </CardHeader>
-                                <CardContent>
-                                    <ul className="space-y-2">
-                                        {useCase.items.map((item, i) => (
-                                            <li key={i} className="flex items-center gap-2">
-                                                <CheckCircle className="w-5 h-5 text-primary flex-shrink-0" />
-                                                <span>{item}</span>
-                                            </li>
-                                        ))}
-                                    </ul>
-                                </CardContent>
-                            </Card>
-                        ))}
-                    </div>
-                </div>
-            </section>
+          <div className="grid md:grid-cols-3 gap-6">
+            {[
+              { title: "Individuals", items: ["Personal daily expenses", "Free peer-to-peer sends under ৳1k", "Biometric face/fingerprint login", "Instant balance alerts"] },
+              { title: "Agents", items: ["Earn ৳4/1k on cash-out", "Cash in deposits up to ৳100k", "Dedicated agent float dashboard", "Real-time earnings tracking"] },
+              { title: "Businesses & Admins", items: ["System ledger oversight", "Withdraw up to ৳100k fee-free", "Audit logs & transaction analytics", "User & agent compliance controls"] },
+            ].map((useCase, idx) => (
+              <div key={idx} className="p-7 rounded-3xl bg-white border border-[#D9E2DC] flex flex-col gap-4 shadow-sm">
+                <h3 className="font-['Bricolage_Grotesque',sans-serif] font-bold text-2xl text-[#0C1A14] m-0">
+                  {useCase.title}
+                </h3>
+                <ul className="flex flex-col gap-2.5 p-0 m-0 list-none">
+                  {useCase.items.map((item, i) => (
+                    <li key={i} className="flex items-center gap-2.5 text-sm text-[#4A5D54]">
+                      <CheckCircle className="w-4 h-4 text-[#12B76A] shrink-0" />
+                      <span>{item}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
 
-            {/* CTA Section */}
-            <section className="py-20 bg-gradient-to-br from-primary/10 to-background">
-                <div className="container mx-auto max-w-4xl px-4 text-center">
-                    <h2 className="text-4xl font-bold mb-6">Ready to Get Started?</h2>
-                    <p className="text-muted-foreground text-lg mb-8 max-w-2xl mx-auto">Join thousands of users who trust WalletX for their digital transactions. Create your free account today and experience the difference.</p>
-                    <Link to="/register"><Button size="lg" className="px-10 py-6 text-lg cursor-pointer font-semibold shadow-lg hover:shadow-xl">Create Your Free Account</Button></Link>
-                </div>
-            </section>
-        </main>
-    )
-}
+      {/* CTA */}
+      <section className="bg-[#12B76A] text-[#04170E] py-16">
+        <div className="max-w-[1200px] mx-auto px-4 sm:px-6 flex flex-wrap items-center justify-between gap-6">
+          <div>
+            <h2 className="m-0 font-['Bricolage_Grotesque',sans-serif] font-extrabold text-3xl sm:text-4xl">
+              Ready to experience WalletX?
+            </h2>
+            <p className="m-0 text-base opacity-85 mt-1">
+              Join thousands who rely on transparent digital finance.
+            </p>
+          </div>
+          <Link
+            to="/register"
+            className="btn px-7 py-3.5 rounded-xl font-bold text-base text-white bg-[#04170E] hover:bg-[#082316] transition-all shadow-md"
+          >
+            Create your account
+          </Link>
+        </div>
+      </section>
+    </main>
+  );
+};
 
-export default Features
+export default FeaturesPage;

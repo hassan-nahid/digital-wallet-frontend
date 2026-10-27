@@ -1,22 +1,26 @@
-import { Button } from "@/components/ui/button";
 import { Link } from "react-router";
+import { Lock } from "lucide-react";
 
 const Unauthorized = () => {
   return (
-    <div className="min-h-[60vh] flex flex-col items-center justify-center text-center gap-6">
-      <div className="flex flex-col items-center gap-2">
-        <span className="text-red-500">
-          <svg width="64" height="64" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.5">
-            <circle cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="2" fill="#fee2e2" />
-            <path stroke="#ef4444" strokeWidth="2" strokeLinecap="round" d="M9.5 9.5l5 5m0-5l-5 5" />
-          </svg>
-        </span>
-        <h1 className="text-3xl font-bold text-red-600">Unauthorized</h1>
-        <p className="text-muted-foreground text-lg max-w-md">You do not have permission to access this page.</p>
+    <div className="min-h-[70vh] flex flex-col items-center justify-center text-center gap-6 p-6 bg-[#F3F6F4] text-[#0C1A14]">
+      <div className="flex flex-col items-center gap-3 max-w-md">
+        <div className="w-16 h-16 rounded-2xl bg-[#0B2318] text-[#3DE8A0] flex items-center justify-center shadow-sm mb-2">
+          <Lock className="w-8 h-8" />
+        </div>
+        <h1 className="font-['Bricolage_Grotesque',sans-serif] font-extrabold text-3xl text-[#0C1A14] m-0">
+          Access Restricted
+        </h1>
+        <p className="text-base text-[#4A5D54] m-0">
+          You do not have permission to view this page with your current role.
+        </p>
       </div>
-      <Button asChild className="mt-4 cursor-pointer">
-        <Link to="/">Go to Home</Link>
-      </Button>
+      <Link
+        to="/"
+        className="btn px-6 py-3 rounded-xl font-bold text-sm text-[#04170E] bg-[#12B76A] hover:bg-[#0fa968] transition-all shadow-sm"
+      >
+        Back to Home
+      </Link>
     </div>
   );
 };

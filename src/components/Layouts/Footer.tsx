@@ -1,123 +1,130 @@
 import Logo from "@/assets/Logo/Logo";
-import React from "react";
 import { FaFacebook, FaInstagram, FaLinkedin, FaTwitter } from "react-icons/fa";
 import { Link } from "react-router";
 
-interface Footer7Props {
-  logo?: {
-    url: string;
-    src: string;
-    alt: string;
-    title: string;
-  };
-  sections?: Array<{
-    title: string;
-    links: Array<{ name: string; href: string }>;
-  }>;
-  description?: string;
-  socialLinks?: Array<{
-    icon: React.ReactElement;
-    href: string;
-    label: string;
-  }>;
-  copyright?: string;
-  legalLinks?: Array<{
-    name: string;
-    href: string;
-  }>;
-}
-
-const defaultSections = [
-  {
-    title: "Quick Links",
-    links: [
-      { name: "Home", href: "/" },
-      { name: "About", href: "/about" },
-      { name: "Features", href: "/features" },
-      { name: "Contact", href: "/contact" },
-    ],
-  },
-  {
-    title: "Support",
-    links: [
-      { name: "FAQ", href: "/faq" },
-      { name: "Help Center", href: "/contact" },
-      { name: "Contact Us", href: "/contact" },
-      { name: "About Us", href: "/about" },
-    ],
-  },
-  {
-    title: "Legal",
-    links: [
-      { name: "Privacy Policy", href: "/contact" },
-      { name: "Terms of Service", href: "/contact" },
-      { name: "Security", href: "/features" },
-      { name: "Cookie Policy", href: "/contact" },
-    ],
-  },
-];
-
-const defaultSocialLinks = [
-  { icon: <FaInstagram className="size-5" />, href: "https://www.instagram.com/HassanNahid10", label: "Instagram" },
-  { icon: <FaFacebook className="size-5" />, href: "https://www.facebook.com/HassanNahid10", label: "Facebook" },
-  { icon: <FaTwitter className="size-5" />, href: "https://x.com/HassanNahid100", label: "X" },
-  { icon: <FaLinkedin className="size-5" />, href: "https://www.linkedin.com/in/hassan-nahid", label: "LinkedIn" },
-];
-
-
-const Footer = ({
- 
-  sections = defaultSections,
-  description = "WalletX - Your trusted digital wallet solution. Built by Hassan Nahid.",
-  socialLinks = defaultSocialLinks,
-  copyright = "© 2025 WalletX. Developed by Hassan Nahid. All rights reserved."
-}: Footer7Props) => {
+const Footer = () => {
   return (
-    <section className="container mx-auto px-4 md:px-6 mt-8">
-      <div className="">
-        <div className="flex w-full flex-col justify-between gap-10 lg:flex-row lg:items-start lg:text-left">
-          <div className="flex w-full flex-col justify-between gap-6 lg:items-start">
-            {/* Logo */}
-            <div className="flex items-center gap-2 lg:justify-start">
-              <Logo/> <span className="font-bold text-3xl">WalletX</span>
-            </div>
-            <p className="text-muted-foreground max-w-[70%] text-sm">
-              {description}
+    <footer className="bg-[#06130D] text-[#B7CCC0] transition-colors w-full">
+      <div className="max-w-[1200px] mx-auto px-4 sm:px-6 pt-16 pb-10 flex flex-col gap-12">
+        <div className="flex flex-wrap gap-10 lg:gap-16 justify-between">
+          {/* Brand Info */}
+          <div className="flex-1 min-w-[260px] max-w-[340px] flex flex-col gap-4">
+            <Link
+              to="/"
+              className="flex items-center gap-2.5 font-['Bricolage_Grotesque',sans-serif] font-extrabold text-[22px] tracking-tight text-white hover:opacity-90 transition-opacity"
+            >
+              <Logo size={32} />
+              <span>WalletX</span>
+            </Link>
+            <p className="text-[15px] leading-relaxed text-[#B7CCC0] m-0">
+              A digital wallet for users, agents and admins. Built by Hassan Nahid.
             </p>
-            <ul className="text-muted-foreground flex items-center space-x-6">
-              {socialLinks.map((social, idx) => (
-                <li key={idx} className="hover:text-primary font-medium">
-                  <a href={social.href} aria-label={social.label}>
-                    {social.icon}
-                  </a>
-                </li>
-              ))}
-            </ul>
+            {/* Social Links */}
+            <div className="flex items-center gap-4 text-white/80 pt-2">
+              <a
+                href="https://www.linkedin.com/in/hassan-nahid"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="LinkedIn"
+                className="hover:text-[#3DE8A0] transition-colors"
+              >
+                <FaLinkedin className="w-5 h-5" />
+              </a>
+              <a
+                href="https://x.com/HassanNahid100"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="X (Twitter)"
+                className="hover:text-[#3DE8A0] transition-colors"
+              >
+                <FaTwitter className="w-5 h-5" />
+              </a>
+              <a
+                href="https://www.facebook.com/HassanNahid10"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Facebook"
+                className="hover:text-[#3DE8A0] transition-colors"
+              >
+                <FaFacebook className="w-5 h-5" />
+              </a>
+              <a
+                href="https://www.instagram.com/HassanNahid10"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Instagram"
+                className="hover:text-[#3DE8A0] transition-colors"
+              >
+                <FaInstagram className="w-5 h-5" />
+              </a>
+            </div>
           </div>
-          <div className="grid w-full gap-6 md:grid-cols-3 lg:gap-20">
-            {sections.map((section, sectionIdx) => (
-              <div key={sectionIdx}>
-                <h3 className="mb-4 font-bold">{section.title}</h3>
-                <ul className="text-muted-foreground space-y-3 text-sm">
-                  {section.links.map((link, linkIdx) => (
-                    <li
-                      key={linkIdx}
-                      className="hover:text-primary font-medium"
-                    >
-                      <Link to={link.href}>{link.name}</Link>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            ))}
+
+          {/* Links Columns */}
+          <div className="flex-[2_1_480px] min-w-[280px] grid grid-cols-2 sm:grid-cols-3 gap-8">
+            <div className="flex flex-col gap-3 text-[15px]">
+              <span className="font-['JetBrains_Mono',monospace] text-xs font-bold tracking-widest uppercase text-white">
+                Product
+              </span>
+              <a href="/#pricing" className="hover:text-[#3DE8A0] transition-colors">
+                Pricing
+              </a>
+              <a href="/#roles" className="hover:text-[#3DE8A0] transition-colors">
+                Roles
+              </a>
+              <a href="/#how" className="hover:text-[#3DE8A0] transition-colors">
+                How it works
+              </a>
+              <a href="/#security" className="hover:text-[#3DE8A0] transition-colors">
+                Security
+              </a>
+            </div>
+
+            <div className="flex flex-col gap-3 text-[15px]">
+              <span className="font-['JetBrains_Mono',monospace] text-xs font-bold tracking-widest uppercase text-white">
+                Support
+              </span>
+              <a href="/#faq" className="hover:text-[#3DE8A0] transition-colors">
+                FAQ
+              </a>
+              <Link to="/contact" className="hover:text-[#3DE8A0] transition-colors">
+                Help center
+              </Link>
+              <Link to="/contact" className="hover:text-[#3DE8A0] transition-colors">
+                Contact us
+              </Link>
+              <Link to="/about" className="hover:text-[#3DE8A0] transition-colors">
+                About us
+              </Link>
+            </div>
+
+            <div className="flex flex-col gap-3 text-[15px]">
+              <span className="font-['JetBrains_Mono',monospace] text-xs font-bold tracking-widest uppercase text-white">
+                Legal
+              </span>
+              <Link to="/contact" className="hover:text-[#3DE8A0] transition-colors">
+                Privacy policy
+              </Link>
+              <Link to="/contact" className="hover:text-[#3DE8A0] transition-colors">
+                Terms of service
+              </Link>
+              <Link to="/contact" className="hover:text-[#3DE8A0] transition-colors">
+                Cookie policy
+              </Link>
+            </div>
           </div>
         </div>
-        <div className="text-muted-foreground  flex flex-col justify-between gap-4 border-t text-xs font-medium md:flex-row md:items-center md:text-left">
-          <p className="order-2 lg:order-1">{copyright}</p>
+
+        {/* Bottom Copyright */}
+        <div className="pt-6 border-t border-white/10 text-sm text-[#B7CCC0] flex flex-wrap justify-between items-center gap-4">
+          <div>© 2026 WalletX. Developed by Hassan Nahid. All rights reserved.</div>
+          <div className="text-xs text-[#B7CCC0]/70">
+            Secure Digital Wallet Platform
+          </div>
         </div>
       </div>
-    </section>
+    </footer>
   );
 };
 
-export default Footer
+export default Footer;

@@ -1,22 +1,25 @@
-import { Button } from "@/components/ui/button";
 import { Link } from "react-router";
 
 const ErrorPage = () => {
   return (
-    <div className="min-h-[60vh] flex flex-col items-center justify-center text-center gap-6">
-      <div className="flex flex-col items-center gap-2">
-        <span className="text-yellow-500">
-          <svg width="64" height="64" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.5">
-            <circle cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="2" fill="#fef9c3" />
-            <path stroke="#f59e42" strokeWidth="2" strokeLinecap="round" d="M12 8v4m0 4h.01" />
-          </svg>
+    <div className="min-h-[70vh] flex flex-col items-center justify-center text-center gap-6 p-6 bg-[#F3F6F4] text-[#0C1A14]">
+      <div className="flex flex-col items-center gap-3 max-w-md">
+        <span className="font-['JetBrains_Mono',monospace] font-bold text-6xl text-[#0B2318]">
+          404
         </span>
-        <h1 className="text-3xl font-bold text-yellow-600">Something went wrong</h1>
-        <p className="text-muted-foreground text-lg max-w-md">An unexpected error has occurred. Please try again later or contact support.</p>
+        <h1 className="font-['Bricolage_Grotesque',sans-serif] font-extrabold text-3xl text-[#0C1A14] m-0">
+          Page not found
+        </h1>
+        <p className="text-base text-[#4A5D54] m-0">
+          The page you are looking for doesn't exist or has been moved.
+        </p>
       </div>
-      <Button asChild className="mt-4 cursor-pointer">
-        <Link to="/">Go to Home</Link>
-      </Button>
+      <Link
+        to="/"
+        className="btn px-6 py-3 rounded-xl font-bold text-sm text-[#04170E] bg-[#12B76A] hover:bg-[#0fa968] transition-all shadow-sm"
+      >
+        Back to Home
+      </Link>
     </div>
   );
 };

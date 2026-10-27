@@ -1,271 +1,179 @@
-import { Wallet, Search, Filter, Download, Clock, CheckCircle, XCircle, ArrowRight } from "lucide-react";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
+import { Shield, Clock, FileText, ArrowRight } from "lucide-react";
 import { Link } from "react-router";
 
 const TransactionsService = () => {
   const features = [
     {
-      icon: <Search className="w-6 h-6 text-primary" />,
-      title: "Advanced Search",
-      description: "Find any transaction quickly with powerful search filters."
+      icon: <Clock className="w-6 h-6 text-[#3DE8A0]" />,
+      title: "Real-Time Tracking",
+      description: "Every send, cash-in, cash-out, and commission appears in your statement immediately.",
     },
     {
-      icon: <Filter className="w-6 h-6 text-primary" />,
-      title: "Smart Filtering",
-      description: "Filter by date, amount, status, type, and more."
+      icon: <Shield className="w-6 h-6 text-[#3DE8A0]" />,
+      title: "Full Transparency",
+      description: "See the exact fee, recipient details, and agent commission split for every entry.",
     },
     {
-      icon: <Download className="w-6 h-6 text-primary" />,
-      title: "Export Statements",
-      description: "Download transaction history in PDF or CSV format."
-    }
+      icon: <FileText className="w-6 h-6 text-[#3DE8A0]" />,
+      title: "Export & Reporting",
+      description: "Download certified statement summaries in PDF or CSV formats anytime.",
+    },
   ];
 
-  const transactionTypes = [
+  const steps = [
     {
-      icon: <CheckCircle className="w-5 h-5 text-green-600" />,
-      title: "Completed",
-      description: "Successfully processed transactions",
-      color: "text-green-600 bg-green-50 dark:bg-green-950"
+      step: "01",
+      title: "Open History",
+      description: "Navigate to the Transactions tab in your WalletX dashboard.",
     },
     {
-      icon: <Clock className="w-5 h-5 text-yellow-600" />,
-      title: "Pending",
-      description: "Transactions awaiting confirmation",
-      color: "text-yellow-600 bg-yellow-50 dark:bg-yellow-950"
+      step: "02",
+      title: "Filter by Type",
+      description: "Filter by send, cash-in, cash-out, or commission date ranges.",
     },
     {
-      icon: <XCircle className="w-5 h-5 text-red-600" />,
-      title: "Failed",
-      description: "Unsuccessful transaction attempts",
-      color: "text-red-600 bg-red-50 dark:bg-red-950"
-    }
+      step: "03",
+      title: "Inspect Details",
+      description: "Click any item to view transaction ID, fee breakdown, and counterparty.",
+    },
+    {
+      step: "04",
+      title: "Export Statement",
+      description: "Generate a downloadable report for tax, personal, or business accounting.",
+    },
   ];
 
   return (
-    <div className="container mx-auto px-4 md:px-6 py-12">
+    <main className="min-h-screen bg-[#F3F6F4] text-[#0C1A14]">
       {/* Hero Section */}
-      <div className="flex flex-col md:flex-row items-center gap-12 mb-16">
-        <div className="flex-1">
-          <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-primary/10 mb-6">
-            <Wallet className="w-8 h-8 text-primary" />
-          </div>
-          <h1 className="text-4xl md:text-5xl font-bold mb-4">Transaction History</h1>
-          <p className="text-xl text-muted-foreground mb-6">
-            Keep track of all your financial activities with detailed transaction history and comprehensive reporting tools.
-          </p>
-          <div className="flex gap-4">
-            <Button asChild size="lg" className="cursor-pointer">
-              <Link to="/register">View Your History</Link>
-            </Button>
-            <Button asChild size="lg" variant="outline" className="cursor-pointer">
-              <Link to="/services">All Services</Link>
-            </Button>
+      <section className="bg-[#0B2318] text-white py-16 lg:py-20 hero-grid-pattern border-b border-white/10">
+        <div className="max-w-[1200px] mx-auto px-4 sm:px-6">
+          <div className="flex flex-col md:flex-row items-center justify-between gap-12">
+            <div className="flex-1 flex flex-col gap-5">
+              <div className="inline-flex self-start items-center gap-2 px-3.5 py-1.5 border border-[#3DE8A0]/40 rounded-full font-['JetBrains_Mono',monospace] text-xs font-bold tracking-widest uppercase text-[#3DE8A0] bg-[#3DE8A0]/5">
+                Transaction History
+              </div>
+              <h1 className="m-0 font-['Bricolage_Grotesque',sans-serif] font-extrabold text-4xl sm:text-5xl lg:text-6xl tracking-tight text-white">
+                Audited ledger records for every transaction.
+              </h1>
+              <p className="m-0 text-lg sm:text-xl text-[#B7CCC0] max-w-xl leading-relaxed">
+                Complete financial clarity. Review past transfers, cash-outs, agent earnings, and fee splits with permanent audit certainty.
+              </p>
+              <div className="flex flex-wrap gap-3 pt-2">
+                <Link
+                  to="/register"
+                  className="btn px-7 py-3.5 rounded-xl font-bold text-base text-[#04170E] bg-[#3DE8A0] hover:bg-[#32d992] transition-all shadow-md"
+                >
+                  Start Using
+                </Link>
+                <Link
+                  to="/services"
+                  className="btn px-7 py-3.5 rounded-xl font-semibold text-base text-white border border-white/30 hover:bg-white/5 transition-all"
+                >
+                  All Services
+                </Link>
+              </div>
+            </div>
+
+            {/* Quick Stats Card */}
+            <div className="w-full md:w-[380px] bg-[#123226] border border-white/10 rounded-3xl p-7 flex flex-col gap-4 text-white shadow-xl">
+              <span className="font-['Bricolage_Grotesque',sans-serif] font-bold text-xl text-white">
+                Ledger Specifications
+              </span>
+              <div className="flex flex-col gap-3 text-sm pt-2 border-t border-white/10">
+                <div className="flex justify-between items-center py-1 border-b border-white/10">
+                  <span className="text-[#B7CCC0]">Retention Period</span>
+                  <span className="font-['JetBrains_Mono',monospace] font-bold text-[#3DE8A0]">Permanent</span>
+                </div>
+                <div className="flex justify-between items-center py-1 border-b border-white/10">
+                  <span className="text-[#B7CCC0]">Sync Speed</span>
+                  <span className="font-['JetBrains_Mono',monospace] font-bold text-[#3DE8A0]">Real-time</span>
+                </div>
+                <div className="flex justify-between items-center py-1 border-b border-white/10">
+                  <span className="text-[#B7CCC0]">Fee Breakdown</span>
+                  <span className="font-['JetBrains_Mono',monospace] font-bold text-white">Included</span>
+                </div>
+                <div className="flex justify-between items-center py-1 border-b border-white/10">
+                  <span className="text-[#B7CCC0]">Export Formats</span>
+                  <span className="font-['JetBrains_Mono',monospace] font-bold text-white">PDF & CSV</span>
+                </div>
+                <div className="flex justify-between items-center py-1">
+                  <span className="text-[#B7CCC0]">Cross-Device Sync</span>
+                  <span className="font-['JetBrains_Mono',monospace] font-bold text-white">Enabled</span>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
-        <div className="flex-1">
-          <Card className="bg-gradient-to-br from-primary/10 to-primary/5 border-primary/20">
-            <CardHeader>
-              <CardTitle>History Features</CardTitle>
-            </CardHeader>
-            <CardContent className="space-y-4">
-              <div className="flex justify-between items-center">
-                <span className="text-muted-foreground">History Period</span>
-                <span className="font-bold">Unlimited</span>
-              </div>
-              <div className="flex justify-between items-center">
-                <span className="text-muted-foreground">Real-time Updates</span>
-                <span className="font-bold">Yes</span>
-              </div>
-              <div className="flex justify-between items-center">
-                <span className="text-muted-foreground">Export Formats</span>
-                <span className="font-bold">PDF, CSV</span>
-              </div>
-              <div className="flex justify-between items-center">
-                <span className="text-muted-foreground">Mobile Access</span>
-                <span className="font-bold">Available</span>
-              </div>
-            </CardContent>
-          </Card>
-        </div>
-      </div>
+      </section>
 
       {/* Features Section */}
-      <div className="mb-16">
-        <h2 className="text-3xl font-bold text-center mb-12">Powerful Features</h2>
-        <div className="grid md:grid-cols-3 gap-8">
-          {features.map((feature, index) => (
-            <Card key={index} className="text-center hover:shadow-lg transition-shadow">
-              <CardHeader>
-                <div className="inline-flex items-center justify-center w-12 h-12 rounded-full bg-primary/10 mx-auto mb-4">
+      <section className="py-20 bg-white border-b border-[#D9E2DC]">
+        <div className="max-w-[1200px] mx-auto px-4 sm:px-6 flex flex-col gap-10">
+          <div className="text-center max-w-xl mx-auto flex flex-col gap-2">
+            <span className="font-['JetBrains_Mono',monospace] text-xs font-bold tracking-widest uppercase text-[#087F4C]">
+              Capabilities
+            </span>
+            <h2 className="m-0 font-['Bricolage_Grotesque',sans-serif] font-extrabold text-3xl sm:text-4xl text-[#0C1A14]">
+              Complete history at your fingertips
+            </h2>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-6">
+            {features.map((feature, index) => (
+              <div
+                key={index}
+                className="p-7 rounded-2xl bg-[#F3F6F4] border border-[#E4EBE7] flex flex-col gap-3 shadow-sm"
+              >
+                <div className="w-12 h-12 rounded-xl bg-[#0B2318] flex items-center justify-center shrink-0 mb-1">
                   {feature.icon}
                 </div>
-                <CardTitle className="text-xl">{feature.title}</CardTitle>
-                <CardDescription>{feature.description}</CardDescription>
-              </CardHeader>
-            </Card>
-          ))}
-        </div>
-      </div>
-
-      {/* Transaction Status Types */}
-      <div className="bg-primary/5 rounded-lg p-8 md:p-12 mb-16">
-        <h2 className="text-3xl font-bold text-center mb-12">Transaction Status</h2>
-        <div className="grid md:grid-cols-3 gap-6">
-          {transactionTypes.map((type, index) => (
-            <Card key={index}>
-              <CardHeader>
-                <div className={`inline-flex items-center justify-center w-12 h-12 rounded-full ${type.color} mb-4`}>
-                  {type.icon}
-                </div>
-                <CardTitle className="text-xl">{type.title}</CardTitle>
-                <CardDescription>{type.description}</CardDescription>
-              </CardHeader>
-            </Card>
-          ))}
-        </div>
-      </div>
-
-      {/* What You Can Track */}
-      <div className="mb-16">
-        <h2 className="text-3xl font-bold text-center mb-12">What You Can Track</h2>
-        <div className="grid md:grid-cols-2 gap-6">
-          <Card>
-            <CardHeader>
-              <CardTitle>Incoming Transactions</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <ul className="space-y-2">
-                <li className="flex items-center gap-2 text-sm">
-                  <ArrowRight className="w-4 h-4 text-primary" />
-                  <span>Money received from others</span>
-                </li>
-                <li className="flex items-center gap-2 text-sm">
-                  <ArrowRight className="w-4 h-4 text-primary" />
-                  <span>Cash in deposits</span>
-                </li>
-                <li className="flex items-center gap-2 text-sm">
-                  <ArrowRight className="w-4 h-4 text-primary" />
-                  <span>Bank transfers received</span>
-                </li>
-                <li className="flex items-center gap-2 text-sm">
-                  <ArrowRight className="w-4 h-4 text-primary" />
-                  <span>Refunds and reversals</span>
-                </li>
-              </ul>
-            </CardContent>
-          </Card>
-
-          <Card>
-            <CardHeader>
-              <CardTitle>Outgoing Transactions</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <ul className="space-y-2">
-                <li className="flex items-center gap-2 text-sm">
-                  <ArrowRight className="w-4 h-4 text-primary" />
-                  <span>Money sent to others</span>
-                </li>
-                <li className="flex items-center gap-2 text-sm">
-                  <ArrowRight className="w-4 h-4 text-primary" />
-                  <span>Cash out withdrawals</span>
-                </li>
-                <li className="flex items-center gap-2 text-sm">
-                  <ArrowRight className="w-4 h-4 text-primary" />
-                  <span>Bill payments</span>
-                </li>
-                <li className="flex items-center gap-2 text-sm">
-                  <ArrowRight className="w-4 h-4 text-primary" />
-                  <span>Purchase transactions</span>
-                </li>
-              </ul>
-            </CardContent>
-          </Card>
-        </div>
-      </div>
-
-      {/* Filter Options */}
-      <div className="bg-gradient-to-r from-primary/10 to-primary/5 rounded-lg p-8 md:p-12 mb-16">
-        <h2 className="text-3xl font-bold text-center mb-8">Filter & Search Options</h2>
-        <div className="grid md:grid-cols-3 gap-8">
-          <div>
-            <h3 className="font-semibold text-lg mb-3">By Time Period</h3>
-            <ul className="space-y-2 text-sm text-muted-foreground">
-              <li>• Today's transactions</li>
-              <li>• Last 7 days</li>
-              <li>• Last 30 days</li>
-              <li>• Custom date range</li>
-            </ul>
-          </div>
-          <div>
-            <h3 className="font-semibold text-lg mb-3">By Type</h3>
-            <ul className="space-y-2 text-sm text-muted-foreground">
-              <li>• Cash in</li>
-              <li>• Cash out</li>
-              <li>• Send money</li>
-              <li>• Receive money</li>
-            </ul>
-          </div>
-          <div>
-            <h3 className="font-semibold text-lg mb-3">By Status</h3>
-            <ul className="space-y-2 text-sm text-muted-foreground">
-              <li>• Completed</li>
-              <li>• Pending</li>
-              <li>• Failed</li>
-              <li>• Cancelled</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-
-      {/* Export Options */}
-      <div className="mb-16">
-        <h2 className="text-3xl font-bold text-center mb-8">Export Your Data</h2>
-        <div className="max-w-3xl mx-auto">
-          <Card>
-            <CardContent className="p-8">
-              <div className="flex flex-col md:flex-row items-center gap-6">
-                <div className="flex-1">
-                  <h3 className="text-xl font-semibold mb-2">Download Statements</h3>
-                  <p className="text-muted-foreground mb-4">
-                    Export your transaction history in multiple formats for record-keeping, accounting, or tax purposes.
-                  </p>
-                  <ul className="space-y-2 text-sm">
-                    <li className="flex items-center gap-2">
-                      <CheckCircle className="w-4 h-4 text-primary" />
-                      <span>PDF format for printing</span>
-                    </li>
-                    <li className="flex items-center gap-2">
-                      <CheckCircle className="w-4 h-4 text-primary" />
-                      <span>CSV for spreadsheet analysis</span>
-                    </li>
-                    <li className="flex items-center gap-2">
-                      <CheckCircle className="w-4 h-4 text-primary" />
-                      <span>Custom date range selection</span>
-                    </li>
-                  </ul>
-                </div>
-                <div className="flex-shrink-0">
-                  <Download className="w-24 h-24 text-primary opacity-20" />
-                </div>
+                <h3 className="font-['Bricolage_Grotesque',sans-serif] font-bold text-xl text-[#0C1A14] m-0">
+                  {feature.title}
+                </h3>
+                <p className="text-sm text-[#4A5D54] leading-relaxed m-0">
+                  {feature.description}
+                </p>
               </div>
-            </CardContent>
-          </Card>
+            ))}
+          </div>
         </div>
-      </div>
+      </section>
 
-      {/* CTA Section */}
-      <div className="text-center">
-        <h2 className="text-3xl font-bold mb-4">Start Tracking Your Transactions</h2>
-        <p className="text-muted-foreground mb-6 max-w-2xl mx-auto">
-          Get complete visibility of your financial activities with WalletX transaction history.
-        </p>
-        <Button asChild size="lg" className="cursor-pointer">
-          <Link to="/register">Create Your Account</Link>
-        </Button>
-      </div>
-    </div>
+      {/* Steps Section */}
+      <section className="py-20 bg-[#F3F6F4]">
+        <div className="max-w-[1200px] mx-auto px-4 sm:px-6 flex flex-col gap-10">
+          <div className="text-center max-w-xl mx-auto flex flex-col gap-2">
+            <span className="font-['JetBrains_Mono',monospace] text-xs font-bold tracking-widest uppercase text-[#087F4C]">
+              Audit Flow
+            </span>
+            <h2 className="m-0 font-['Bricolage_Grotesque',sans-serif] font-extrabold text-3xl sm:text-4xl text-[#0C1A14]">
+              How to Audit Your Wallet
+            </h2>
+          </div>
+
+          <div className="grid md:grid-cols-4 gap-6">
+            {steps.map((item, index) => (
+              <div
+                key={index}
+                className="relative p-6 rounded-2xl bg-white border border-[#D9E2DC] flex flex-col gap-3 shadow-sm"
+              >
+                <span className="w-10 h-10 rounded-xl bg-[#0B2318] text-[#3DE8A0] font-mono font-bold text-sm flex items-center justify-center">
+                  {item.step}
+                </span>
+                <h3 className="font-['Bricolage_Grotesque',sans-serif] font-bold text-xl text-[#0C1A14] m-0">
+                  {item.title}
+                </h3>
+                <p className="text-sm text-[#4A5D54] leading-relaxed m-0">{item.description}</p>
+                {index < steps.length - 1 && (
+                  <ArrowRight className="hidden md:block absolute top-6 right-4 w-5 h-5 text-[#D9E2DC]" />
+                )}
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+    </main>
   );
 };
 
