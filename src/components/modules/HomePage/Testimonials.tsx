@@ -1,55 +1,84 @@
-
 const testimonials = [
   {
     name: "Sarah Rahman",
-    role: "Freelancer",
-    text: "WalletX made sending and receiving payments so easy! The interface is clean and the transfers are instant.",
-    image: "https://randomuser.me/api/portraits/women/44.jpg",
+    role: "Freelance Designer",
+    text: "WalletX made sending and receiving payments effortless. You know the exact fee before confirming, and the money arrives in the same second.",
+    rating: 5,
+    avatar: "SR",
   },
   {
     name: "Aminul Islam",
-    role: "Business Owner",
-    text: "I love the security features and the 24/7 support. Highly recommended for anyone who needs a reliable wallet.",
-    image: "https://randomuser.me/api/portraits/men/32.jpg",
+    role: "Retail Store Owner & Agent",
+    text: "As an agent, the commission split is crystal clear. I earn ৳4 per ৳1,000 immediately without wondering about hidden deductions.",
+    rating: 5,
+    avatar: "AI",
   },
   {
     name: "Nadia Akter",
-    role: "Student",
-    text: "Adding money and withdrawing is super simple. WalletX is my go-to for all digital transactions!",
-    image: "https://randomuser.me/api/portraits/women/65.jpg",
+    role: "University Student",
+    text: "Free transfers under ৳1,000 are a lifesaver for splitting food bills with roommates. The biometric login makes it super fast.",
+    rating: 5,
+    avatar: "NA",
   },
-]
+];
 
 const Testimonials = () => {
   return (
-    <section className="py-20 bg-muted/50">
-      <div className="container mx-auto max-w-4xl px-4">
-        <h2 className="text-3xl font-bold text-center mb-4 lg:text-4xl">What Our Users Say</h2>
-        <p className="text-muted-foreground text-center mb-12 max-w-2xl mx-auto lg:text-lg">
-          Real feedback from real WalletX users.
-        </p>
-        <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+    <section className="bg-white border-t border-b border-[#D9E2DC] w-full">
+      <div className="max-w-[1200px] mx-auto px-4 sm:px-6 py-20 lg:py-24 flex flex-col gap-12">
+        <div className="flex flex-col gap-3.5 max-w-[680px]">
+          <span className="font-['JetBrains_Mono',monospace] text-xs font-bold tracking-widest uppercase text-[#087F4C]">
+            User stories
+          </span>
+          <h2 className="m-0 font-['Bricolage_Grotesque',sans-serif] font-extrabold text-[32px] sm:text-[42px] lg:text-[48px] leading-[1.06] tracking-[-0.03em] text-[#0C1A14] text-balance">
+            Real feedback from people who use it every day.
+          </h2>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {testimonials.map((t, idx) => (
             <div
               key={idx}
-              className="flex flex-col items-center bg-background p-6 rounded-xl shadow-sm border hover:shadow-md transition-shadow text-center"
+              className="flex flex-col justify-between gap-6 p-7 rounded-3xl bg-[#F3F6F4] border border-[#E4EBE7] shadow-sm hover:border-[#12B76A]/40 transition-colors"
             >
-              <img
-                src={t.image}
-                alt={t.name}
-                className="w-16 h-16 rounded-full mb-4 border-2 border-primary object-cover"
-              />
-              <blockquote className="italic text-muted-foreground mb-4">“{t.text}”</blockquote>
-              <div>
-                <span className="font-semibold text-primary">{t.name}</span>
-                <span className="block text-xs text-muted-foreground">{t.role}</span>
+              <div className="flex flex-col gap-4">
+                {/* 5 Stars */}
+                <div className="flex gap-1 text-[#12B76A]">
+                  {[...Array(t.rating)].map((_, i) => (
+                    <svg
+                      key={i}
+                      width="16"
+                      height="16"
+                      viewBox="0 0 24 24"
+                      fill="#12B76A"
+                      aria-hidden="true"
+                    >
+                      <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+                    </svg>
+                  ))}
+                </div>
+                <p className="m-0 text-base leading-relaxed text-[#0C1A14]">
+                  "{t.text}"
+                </p>
+              </div>
+
+              <div className="flex items-center gap-3 pt-2 border-t border-[#D9E2DC]">
+                <div className="w-10 h-10 rounded-full bg-[#0B2318] text-[#3DE8A0] font-bold text-sm flex items-center justify-center shrink-0">
+                  {t.avatar}
+                </div>
+                <div className="flex flex-col">
+                  <span className="font-['Bricolage_Grotesque',sans-serif] font-bold text-[15px] text-[#0C1A14]">
+                    {t.name}
+                  </span>
+                  <span className="text-xs text-[#4A5D54]">{t.role}</span>
+                </div>
               </div>
             </div>
           ))}
         </div>
       </div>
     </section>
-  )
-}
+  );
+};
 
-export default Testimonials
+export default Testimonials;

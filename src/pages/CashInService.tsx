@@ -1,259 +1,179 @@
-import { ArrowDownToLine, CreditCard, Building2, Users, CheckCircle, ArrowRight } from "lucide-react";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
+import { Zap, Shield, CheckCircle, ArrowRight } from "lucide-react";
 import { Link } from "react-router";
 
 const CashInService = () => {
   const features = [
     {
-      icon: <CreditCard className="w-6 h-6 text-primary" />,
-      title: "Multiple Payment Methods",
-      description: "Add money using credit/debit cards, bank transfers, or mobile banking."
+      icon: <Zap className="w-6 h-6 text-[#3DE8A0]" />,
+      title: "Quick Deposits",
+      description: "Funds appear in your wallet the moment the deposit is approved.",
     },
     {
-      icon: <Building2 className="w-6 h-6 text-primary" />,
-      title: "Bank Integration",
-      description: "Direct integration with major banks for seamless deposits."
+      icon: <Shield className="w-6 h-6 text-[#3DE8A0]" />,
+      title: "Zero Hidden Fees",
+      description: "Adding money is 100% free for users. You get every taka you pay.",
     },
     {
-      icon: <Users className="w-6 h-6 text-primary" />,
-      title: "Agent Deposits",
-      description: "Visit any of our 10,000+ agent locations for cash deposits."
-    }
+      icon: <CheckCircle className="w-6 h-6 text-[#3DE8A0]" />,
+      title: "Agent or Bank",
+      description: "Deposit via local agent cash-in or transfer directly from your bank card.",
+    },
   ];
 
   const steps = [
     {
-      step: "1",
-      title: "Choose Method",
-      description: "Select your preferred deposit method (Card/Bank/Agent)."
+      step: "01",
+      title: "Select Channel",
+      description: "Choose agent deposit, bank transfer, or card top-up.",
     },
     {
-      step: "2",
+      step: "02",
       title: "Enter Amount",
-      description: "Specify the amount you want to add to your wallet."
+      description: "Specify deposit amount up to ৳50,000.",
     },
     {
-      step: "3",
-      title: "Confirm Payment",
-      description: "Complete the payment through your chosen method."
+      step: "03",
+      title: "Hand Cash or Pay",
+      description: "Hand cash to your agent or authenticate through your bank.",
     },
     {
-      step: "4",
+      step: "04",
       title: "Instant Credit",
-      description: "Money is instantly added to your wallet balance."
-    }
+      description: "Wallet balance updates with immediate SMS confirmation.",
+    },
   ];
 
   return (
-    <div className="container mx-auto px-4 md:px-6 py-12">
+    <main className="min-h-screen bg-[#F3F6F4] text-[#0C1A14]">
       {/* Hero Section */}
-      <div className="flex flex-col md:flex-row items-center gap-12 mb-16">
-        <div className="flex-1">
-          <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-primary/10 mb-6">
-            <ArrowDownToLine className="w-8 h-8 text-primary" />
-          </div>
-          <h1 className="text-4xl md:text-5xl font-bold mb-4">Cash In Service</h1>
-          <p className="text-xl text-muted-foreground mb-6">
-            Add money to your digital wallet quickly and securely through multiple convenient payment options.
-          </p>
-          <div className="flex gap-4">
-            <Button asChild size="lg" className="cursor-pointer">
-              <Link to="/register">Start Using</Link>
-            </Button>
-            <Button asChild size="lg" variant="outline" className="cursor-pointer">
-              <Link to="/services">All Services</Link>
-            </Button>
+      <section className="bg-[#0B2318] text-white py-16 lg:py-20 hero-grid-pattern border-b border-white/10">
+        <div className="max-w-[1200px] mx-auto px-4 sm:px-6">
+          <div className="flex flex-col md:flex-row items-center justify-between gap-12">
+            <div className="flex-1 flex flex-col gap-5">
+              <div className="inline-flex self-start items-center gap-2 px-3.5 py-1.5 border border-[#3DE8A0]/40 rounded-full font-['JetBrains_Mono',monospace] text-xs font-bold tracking-widest uppercase text-[#3DE8A0] bg-[#3DE8A0]/5">
+                Cash In Service
+              </div>
+              <h1 className="m-0 font-['Bricolage_Grotesque',sans-serif] font-extrabold text-4xl sm:text-5xl lg:text-6xl tracking-tight text-white">
+                Add funds to your wallet with zero fees.
+              </h1>
+              <p className="m-0 text-lg sm:text-xl text-[#B7CCC0] max-w-xl leading-relaxed">
+                Top up your digital balance with complete ease. 100% free for users when depositing via agents or linked banks.
+              </p>
+              <div className="flex flex-wrap gap-3 pt-2">
+                <Link
+                  to="/register"
+                  className="btn px-7 py-3.5 rounded-xl font-bold text-base text-[#04170E] bg-[#3DE8A0] hover:bg-[#32d992] transition-all shadow-md"
+                >
+                  Start Using
+                </Link>
+                <Link
+                  to="/services"
+                  className="btn px-7 py-3.5 rounded-xl font-semibold text-base text-white border border-white/30 hover:bg-white/5 transition-all"
+                >
+                  All Services
+                </Link>
+              </div>
+            </div>
+
+            {/* Quick Stats Card */}
+            <div className="w-full md:w-[380px] bg-[#123226] border border-white/10 rounded-3xl p-7 flex flex-col gap-4 text-white shadow-xl">
+              <span className="font-['Bricolage_Grotesque',sans-serif] font-bold text-xl text-white">
+                Deposit Information
+              </span>
+              <div className="flex flex-col gap-3 text-sm pt-2 border-t border-white/10">
+                <div className="flex justify-between items-center py-1 border-b border-white/10">
+                  <span className="text-[#B7CCC0]">User Fee</span>
+                  <span className="font-['JetBrains_Mono',monospace] font-bold text-[#3DE8A0]">Free (৳0)</span>
+                </div>
+                <div className="flex justify-between items-center py-1 border-b border-white/10">
+                  <span className="text-[#B7CCC0]">User Tx Limit</span>
+                  <span className="font-['JetBrains_Mono',monospace] font-bold text-white">৳50,000</span>
+                </div>
+                <div className="flex justify-between items-center py-1 border-b border-white/10">
+                  <span className="text-[#B7CCC0]">Agent Cash In Limit</span>
+                  <span className="font-['JetBrains_Mono',monospace] font-bold text-white">৳100,000</span>
+                </div>
+                <div className="flex justify-between items-center py-1 border-b border-white/10">
+                  <span className="text-[#B7CCC0]">Processing Time</span>
+                  <span className="font-['JetBrains_Mono',monospace] font-bold text-[#3DE8A0]">Instant</span>
+                </div>
+                <div className="flex justify-between items-center py-1">
+                  <span className="text-[#B7CCC0]">Supported Banks</span>
+                  <span className="font-['JetBrains_Mono',monospace] font-bold text-white">50+</span>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
-        <div className="flex-1">
-          <Card className="bg-gradient-to-br from-primary/10 to-primary/5 border-primary/20">
-            <CardHeader>
-              <CardTitle>Deposit Information</CardTitle>
-            </CardHeader>
-            <CardContent className="space-y-4">
-              <div className="flex justify-between items-center">
-                <span className="text-muted-foreground">Processing Time</span>
-                <span className="font-bold">Instant</span>
-              </div>
-              <div className="flex justify-between items-center">
-                <span className="text-muted-foreground">Transaction Fee</span>
-                <span className="font-bold">Free</span>
-              </div>
-              <div className="flex justify-between items-center">
-                <span className="text-muted-foreground">Daily Limit</span>
-                <span className="font-bold">$50,000</span>
-              </div>
-              <div className="flex justify-between items-center">
-                <span className="text-muted-foreground">Supported Banks</span>
-                <span className="font-bold">50+</span>
-              </div>
-            </CardContent>
-          </Card>
-        </div>
-      </div>
+      </section>
 
       {/* Features Section */}
-      <div className="mb-16">
-        <h2 className="text-3xl font-bold text-center mb-12">Key Features</h2>
-        <div className="grid md:grid-cols-3 gap-8">
-          {features.map((feature, index) => (
-            <Card key={index} className="text-center hover:shadow-lg transition-shadow">
-              <CardHeader>
-                <div className="inline-flex items-center justify-center w-12 h-12 rounded-full bg-primary/10 mx-auto mb-4">
+      <section className="py-20 bg-white border-b border-[#D9E2DC]">
+        <div className="max-w-[1200px] mx-auto px-4 sm:px-6 flex flex-col gap-10">
+          <div className="text-center max-w-xl mx-auto flex flex-col gap-2">
+            <span className="font-['JetBrains_Mono',monospace] text-xs font-bold tracking-widest uppercase text-[#087F4C]">
+              Benefits
+            </span>
+            <h2 className="m-0 font-['Bricolage_Grotesque',sans-serif] font-extrabold text-3xl sm:text-4xl text-[#0C1A14]">
+              Zero-fee cash-in features
+            </h2>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-6">
+            {features.map((feature, index) => (
+              <div
+                key={index}
+                className="p-7 rounded-2xl bg-[#F3F6F4] border border-[#E4EBE7] flex flex-col gap-3 shadow-sm"
+              >
+                <div className="w-12 h-12 rounded-xl bg-[#0B2318] flex items-center justify-center shrink-0 mb-1">
                   {feature.icon}
                 </div>
-                <CardTitle className="text-xl">{feature.title}</CardTitle>
-                <CardDescription>{feature.description}</CardDescription>
-              </CardHeader>
-            </Card>
-          ))}
-        </div>
-      </div>
-
-      {/* How It Works Section */}
-      <div className="bg-primary/5 rounded-lg p-8 md:p-12 mb-16">
-        <h2 className="text-3xl font-bold text-center mb-12">How It Works</h2>
-        <div className="grid md:grid-cols-4 gap-6">
-          {steps.map((item, index) => (
-            <div key={index} className="relative">
-              <div className="flex flex-col items-center text-center">
-                <div className="w-12 h-12 rounded-full bg-primary text-primary-foreground flex items-center justify-center text-xl font-bold mb-4">
-                  {item.step}
-                </div>
-                <h3 className="font-semibold text-lg mb-2">{item.title}</h3>
-                <p className="text-sm text-muted-foreground">{item.description}</p>
+                <h3 className="font-['Bricolage_Grotesque',sans-serif] font-bold text-xl text-[#0C1A14] m-0">
+                  {feature.title}
+                </h3>
+                <p className="text-sm text-[#4A5D54] leading-relaxed m-0">
+                  {feature.description}
+                </p>
               </div>
-              {index < steps.length - 1 && (
-                <ArrowRight className="hidden md:block absolute top-6 -right-8 w-6 h-6 text-primary" />
-              )}
-            </div>
-          ))}
-        </div>
-      </div>
-
-      {/* Deposit Methods */}
-      <div className="mb-16">
-        <h2 className="text-3xl font-bold text-center mb-12">Deposit Methods</h2>
-        <div className="grid md:grid-cols-3 gap-6">
-          <Card>
-            <CardHeader>
-              <CardTitle>Credit/Debit Card</CardTitle>
-              <CardDescription>Instant deposits using your cards</CardDescription>
-            </CardHeader>
-            <CardContent>
-              <ul className="space-y-2">
-                <li className="flex items-center gap-2 text-sm">
-                  <CheckCircle className="w-4 h-4 text-primary" />
-                  <span>Instant processing</span>
-                </li>
-                <li className="flex items-center gap-2 text-sm">
-                  <CheckCircle className="w-4 h-4 text-primary" />
-                  <span>Visa, Mastercard, Amex</span>
-                </li>
-                <li className="flex items-center gap-2 text-sm">
-                  <CheckCircle className="w-4 h-4 text-primary" />
-                  <span>100% secure payments</span>
-                </li>
-                <li className="flex items-center gap-2 text-sm">
-                  <CheckCircle className="w-4 h-4 text-primary" />
-                  <span>No transaction fees</span>
-                </li>
-              </ul>
-            </CardContent>
-          </Card>
-
-          <Card>
-            <CardHeader>
-              <CardTitle>Bank Transfer</CardTitle>
-              <CardDescription>Direct transfer from your bank</CardDescription>
-            </CardHeader>
-            <CardContent>
-              <ul className="space-y-2">
-                <li className="flex items-center gap-2 text-sm">
-                  <CheckCircle className="w-4 h-4 text-primary" />
-                  <span>Processing: 1-5 minutes</span>
-                </li>
-                <li className="flex items-center gap-2 text-sm">
-                  <CheckCircle className="w-4 h-4 text-primary" />
-                  <span>50+ partner banks</span>
-                </li>
-                <li className="flex items-center gap-2 text-sm">
-                  <CheckCircle className="w-4 h-4 text-primary" />
-                  <span>Online & mobile banking</span>
-                </li>
-                <li className="flex items-center gap-2 text-sm">
-                  <CheckCircle className="w-4 h-4 text-primary" />
-                  <span>Free of charge</span>
-                </li>
-              </ul>
-            </CardContent>
-          </Card>
-
-          <Card>
-            <CardHeader>
-              <CardTitle>Agent Network</CardTitle>
-              <CardDescription>Cash deposit at agent locations</CardDescription>
-            </CardHeader>
-            <CardContent>
-              <ul className="space-y-2">
-                <li className="flex items-center gap-2 text-sm">
-                  <CheckCircle className="w-4 h-4 text-primary" />
-                  <span>Instant wallet credit</span>
-                </li>
-                <li className="flex items-center gap-2 text-sm">
-                  <CheckCircle className="w-4 h-4 text-primary" />
-                  <span>10,000+ locations</span>
-                </li>
-                <li className="flex items-center gap-2 text-sm">
-                  <CheckCircle className="w-4 h-4 text-primary" />
-                  <span>Available nationwide</span>
-                </li>
-                <li className="flex items-center gap-2 text-sm">
-                  <CheckCircle className="w-4 h-4 text-primary" />
-                  <span>Small service fee</span>
-                </li>
-              </ul>
-            </CardContent>
-          </Card>
-        </div>
-      </div>
-
-      {/* Security Section */}
-      <div className="bg-gradient-to-r from-primary/10 to-primary/5 rounded-lg p-8 md:p-12 mb-16">
-        <div className="max-w-3xl mx-auto text-center">
-          <h2 className="text-3xl font-bold mb-4">Safe & Secure</h2>
-          <p className="text-muted-foreground mb-6">
-            Your money and personal information are protected with bank-level encryption and security protocols.
-          </p>
-          <div className="grid md:grid-cols-3 gap-6 mt-8">
-            <div>
-              <div className="text-3xl font-bold text-primary mb-2">256-bit</div>
-              <div className="text-sm text-muted-foreground">SSL Encryption</div>
-            </div>
-            <div>
-              <div className="text-3xl font-bold text-primary mb-2">100%</div>
-              <div className="text-sm text-muted-foreground">PCI Compliant</div>
-            </div>
-            <div>
-              <div className="text-3xl font-bold text-primary mb-2">24/7</div>
-              <div className="text-sm text-muted-foreground">Fraud Monitoring</div>
-            </div>
+            ))}
           </div>
         </div>
-      </div>
+      </section>
 
-      {/* CTA Section */}
-      <div className="text-center">
-        <h2 className="text-3xl font-bold mb-4">Ready to Add Money?</h2>
-        <p className="text-muted-foreground mb-6 max-w-2xl mx-auto">
-          Join thousands of users who trust WalletX for secure and instant deposits.
-        </p>
-        <Button asChild size="lg" className="cursor-pointer">
-          <Link to="/register">Get Started Now</Link>
-        </Button>
-      </div>
-    </div>
+      {/* Steps Section */}
+      <section className="py-20 bg-[#F3F6F4]">
+        <div className="max-w-[1200px] mx-auto px-4 sm:px-6 flex flex-col gap-10">
+          <div className="text-center max-w-xl mx-auto flex flex-col gap-2">
+            <span className="font-['JetBrains_Mono',monospace] text-xs font-bold tracking-widest uppercase text-[#087F4C]">
+              Process
+            </span>
+            <h2 className="m-0 font-['Bricolage_Grotesque',sans-serif] font-extrabold text-3xl sm:text-4xl text-[#0C1A14]">
+              How to Add Money
+            </h2>
+          </div>
+
+          <div className="grid md:grid-cols-4 gap-6">
+            {steps.map((item, index) => (
+              <div
+                key={index}
+                className="relative p-6 rounded-2xl bg-white border border-[#D9E2DC] flex flex-col gap-3 shadow-sm"
+              >
+                <span className="w-10 h-10 rounded-xl bg-[#0B2318] text-[#3DE8A0] font-mono font-bold text-sm flex items-center justify-center">
+                  {item.step}
+                </span>
+                <h3 className="font-['Bricolage_Grotesque',sans-serif] font-bold text-xl text-[#0C1A14] m-0">
+                  {item.title}
+                </h3>
+                <p className="text-sm text-[#4A5D54] leading-relaxed m-0">{item.description}</p>
+                {index < steps.length - 1 && (
+                  <ArrowRight className="hidden md:block absolute top-6 right-4 w-5 h-5 text-[#D9E2DC]" />
+                )}
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+    </main>
   );
 };
 

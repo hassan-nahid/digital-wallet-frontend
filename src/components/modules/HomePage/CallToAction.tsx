@@ -1,38 +1,34 @@
-
-import { Button } from "@/components/ui/button"
-import { Mail, Facebook, Twitter, Linkedin } from "lucide-react"
-import { Link } from "react-router"
+import { Link } from "react-router";
 
 const CallToAction = () => {
-    return (
-        <footer className="bg-primary/90 py-12">
-            <div className="container mx-auto max-w-4xl px-4 flex flex-col items-center text-center gap-6">
-                <h2 className="text-2xl lg:text-3xl font-bold">Ready to experience WalletX? <br className="hidden sm:block" />Sign up today!</h2>
-                <Link to="/register">
-                    <Button size="lg" className="bg-white cursor-pointer text-primary font-semibold px-8 py-5 shadow-lg hover:bg-primary-foreground hover:text-primary transition">
-                        Sign Up
-                    </Button>
-                </Link>
-                <div className="flex gap-4 mt-4">
-                    <a href="mailto:support@digiwallet.com" className="hover:text-primary-foreground transition" title="Email">
-                        <Mail className="w-6 h-6" />
-                    </a>
-                    <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="hover:text-primary-foreground transition" title="Facebook">
-                        <Facebook className="w-6 h-6" />
-                    </a>
-                    <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" className="hover:text-primary-foreground transition" title="Twitter">
-                        <Twitter className="w-6 h-6" />
-                    </a>
-                    <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="hover:text-primary-foreground transition" title="LinkedIn">
-                        <Linkedin className="w-6 h-6" />
-                    </a>
-                </div>
-                <div className="text-sm mt-2 opacity-80">
-                    Contact: <a href="mailto:support@digiwallet.com" className="underline hover:text-primary-foreground">support@digiwallet.com</a>
-                </div>
-            </div>
-        </footer>
-    )
-}
+  return (
+    <section className="bg-[#12B76A] text-[#04170E] w-full">
+      <div className="max-w-[1200px] mx-auto px-4 sm:px-6 py-16 lg:py-20 flex flex-wrap items-center justify-between gap-8">
+        <div className="flex-1 min-w-[280px] lg:min-w-[420px] flex flex-col gap-3.5">
+          <h2 className="m-0 font-['Bricolage_Grotesque',sans-serif] font-extrabold text-[32px] sm:text-[44px] lg:text-[56px] leading-[1.04] tracking-[-0.035em] text-balance">
+            Open a wallet that tells you the cost up front.
+          </h2>
+          <p className="m-0 text-lg leading-relaxed opacity-85 max-w-[540px]">
+            Create a personal wallet, or apply to become an agent and earn on every cash out.
+          </p>
+        </div>
+        <div className="flex flex-wrap gap-3">
+          <Link
+            to="/register"
+            className="btn px-7 py-4 rounded-xl text-base font-bold text-white bg-[#04170E] hover:bg-[#082316] transition-all shadow-md"
+          >
+            Create account
+          </Link>
+          <Link
+            to="/register"
+            className="btn px-7 py-4 rounded-xl text-base font-bold text-[#04170E] border-2 border-[#04170E] hover:bg-[#04170E]/10 transition-all"
+          >
+            Become an agent
+          </Link>
+        </div>
+      </div>
+    </section>
+  );
+};
 
-export default CallToAction
+export default CallToAction;

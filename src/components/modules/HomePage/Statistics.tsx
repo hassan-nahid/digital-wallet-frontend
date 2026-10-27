@@ -1,91 +1,49 @@
-import { Users, CreditCard, Globe, TrendingUp } from "lucide-react";
-
-const stats = [
+const facts = [
   {
-    title: "Active Users",
-    value: "2M+",
-    description: "Trusted by millions worldwide",
-    icon: <Users className="w-8 h-8 text-primary" />,
-    growth: "+25% this month"
+    value: "৳0",
+    desc: "to send money under ৳1,000",
+    isMono: true,
   },
   {
-    title: "Transactions",
-    value: "$50B+",
-    description: "Processed securely",
-    icon: <CreditCard className="w-8 h-8 text-primary" />,
-    growth: "99.9% uptime"
+    value: "৳10",
+    desc: "per ৳1,000 to cash out through an agent",
+    isMono: true,
   },
   {
-    title: "Countries",
-    value: "150+",
-    description: "Global coverage",
-    icon: <Globe className="w-8 h-8 text-primary" />,
-    growth: "24/7 support"
+    value: "৳50,000",
+    desc: "maximum per add-money or cash-out transaction",
+    isMono: true,
   },
   {
-    title: "Growth Rate",
-    value: "300%",
-    description: "Year over year",
-    icon: <TrendingUp className="w-8 h-8 text-primary" />,
-    growth: "Industry leading"
+    value: "3 roles",
+    desc: "user, agent and admin on one ledger",
+    isMono: false,
   },
 ];
 
 const Statistics = () => {
   return (
-    <section className="py-20 bg-gradient-to-r from-primary/5 via-accent/5 to-primary/5">
-      <div className="container mx-auto max-w-6xl px-4">
-        <div className="text-center mb-16">
-          <h2 className="text-3xl font-bold mb-4 lg:text-4xl">
-            Trusted by Millions
-          </h2>
-          <p className="text-muted-foreground max-w-2xl mx-auto lg:text-lg">
-            Join the fastest-growing digital wallet platform and experience the future of payments
-          </p>
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-          {stats.map((stat, index) => (
-            <div
-              key={index}
-              className="group text-center p-6 rounded-2xl bg-background/50 backdrop-blur-sm border border-border/50 hover:border-primary/20 hover:shadow-lg transition-all duration-300 hover:-translate-y-1"
+    <section className="bg-white border-b border-[#D9E2DC] w-full">
+      <div className="max-w-[1200px] mx-auto px-6 py-10 box-border flex flex-wrap gap-y-7">
+        {facts.map((fact, index) => (
+          <div
+            key={index}
+            className="flex-1 min-w-[240px] px-6 border-l border-[#D9E2DC] flex flex-col gap-1.5"
+          >
+            <span
+              className={`font-bold text-4xl tracking-[-0.03em] text-[#0C1A14] ${
+                fact.isMono
+                  ? "font-['JetBrains_Mono','Noto_Sans_Bengali',monospace]"
+                  : "font-['JetBrains_Mono',monospace]"
+              }`}
             >
-              <div className="flex justify-center mb-4 group-hover:scale-110 transition-transform duration-300">
-                {stat.icon}
-              </div>
-              <div className="text-3xl font-bold text-foreground mb-2 lg:text-4xl">
-                {stat.value}
-              </div>
-              <div className="text-sm font-semibold text-foreground mb-2">
-                {stat.title}
-              </div>
-              <div className="text-xs text-muted-foreground mb-3">
-                {stat.description}
-              </div>
-              <div className="text-xs text-primary font-medium bg-primary/10 px-3 py-1 rounded-full inline-block">
-                {stat.growth}
-              </div>
-            </div>
-          ))}
-        </div>
-
-        {/* Trust badges */}
-        <div className="mt-16 pt-8 border-t border-border/50">
-          <div className="flex flex-wrap items-center justify-center gap-8 opacity-60">
-            <div className="text-sm text-muted-foreground font-medium">
-              🏆 Best Digital Wallet 2024
-            </div>
-            <div className="text-sm text-muted-foreground font-medium">
-              🔒 ISO 27001 Certified
-            </div>
-            <div className="text-sm text-muted-foreground font-medium">
-              🛡️ PCI DSS Compliant
-            </div>
-            <div className="text-sm text-muted-foreground font-medium">
-              ⭐ 4.9/5 App Store Rating
-            </div>
+              {fact.value}
+            </span>
+            <span className="text-[15px] leading-[1.45] text-[#4A5D54]">
+              {fact.desc}
+            </span>
           </div>
-        </div>
+        ))}
       </div>
     </section>
   );
